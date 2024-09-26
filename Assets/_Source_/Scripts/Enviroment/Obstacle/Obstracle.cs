@@ -1,9 +1,12 @@
 using Reflex.Attributes;
+using System.Collections;
 using UnityEngine;
 
 public class Obstracle : MonoBehaviour
 {
     [Inject] private LevelStorage _levelStorage;
+
+    private bool _isActive = false;
 
     private void Awake()
     {
@@ -11,10 +14,20 @@ public class Obstracle : MonoBehaviour
             DIGameConteiner.Instance.InjectRecursive(gameObject);
     }
 
+    private IEnumerator Start()
+    {
+        yield return new WaitForSeconds(1.0f);
+        _isActive = true;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+        if (_isActive == false)
+            return;
+
         if(other.TryGetComponent(out Player player))
         {
+            _isActive = false;
             _levelStorage.RestartLevel();
         }
     }
