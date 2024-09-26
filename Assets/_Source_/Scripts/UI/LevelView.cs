@@ -19,6 +19,6 @@ public class LevelView : MonoBehaviour
 
         _currentMaze.text = _levelStorage.CurrentMaze.ToString();
 
-        _slider.value = _levelStorage.CurrentMaze;
+        _slider.value = _levelStorage.CurrentMaze-1;
     }
 }
