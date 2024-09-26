@@ -6297,7 +6297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11482884, guid: 788ef6bb40f3fb24bb93b05cba690ad7, type: 3}
       propertyPath: onlyPath
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11482884, guid: 788ef6bb40f3fb24bb93b05cba690ad7, type: 3}
       propertyPath: mazeWidth
@@ -6469,6 +6469,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11490874, guid: 788ef6bb40f3fb24bb93b05cba690ad7, type: 3}
       propertyPath: mazePieceArray.Array.data[5].use
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11490874, guid: 788ef6bb40f3fb24bb93b05cba690ad7, type: 3}
+      propertyPath: mazePieceArray.Array.data[9].use
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11490874, guid: 788ef6bb40f3fb24bb93b05cba690ad7, type: 3}
