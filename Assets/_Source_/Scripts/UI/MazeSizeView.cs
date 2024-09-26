@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+using Reflex.Attributes;
+using TMPro;
 using UnityEngine;
 
 public class MazeSizeView : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private TMP_Text _sizeX;
+    [SerializeField] private TMP_Text _sizeY;
 
-    // Update is called once per frame
-    void Update()
+    [Inject] private LevelStorage _levelStorage;
+
+    private void Awake()
     {
-        
+        _sizeX.text = _levelStorage.SizeMazeX.ToString();
+        _sizeY.text = _levelStorage.SizeMazeY.ToString();
     }
 }
