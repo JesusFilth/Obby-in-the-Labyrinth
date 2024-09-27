@@ -15,10 +15,7 @@ public class InitializeLevel : MonoBehaviour
     private List<EnviromentObjectSpawn> _starsSpawn = new();
 
     [Inject] private Player _player;
-    [Inject] private LevelStorage _levelStorage;
-
-    private int TrapCount = 3;//temp, later create so for this 
-    private int StarCount = 1;//temp, later create so for this 
+    [Inject] private ILevelCurrent _levelCurrent;
 
     private void Start()
     {
@@ -63,7 +60,7 @@ public class InitializeLevel : MonoBehaviour
 
     private void GenerateMaze()
     {
-        _mazeEngine.SetSize(_levelStorage.SizeMazeX, _levelStorage.SizeMazeY);
+        _mazeEngine.SetSize(_levelCurrent.GetMazeSizeX(), _levelCurrent.GetMazeSizeY());
         _mazeEngine.generateMaze();
     }
 
@@ -72,10 +69,7 @@ public class InitializeLevel : MonoBehaviour
         if (_obstracleSpawn.Count == 0)
             throw new ArgumentNullException(nameof(_obstracleSpawn));
 
-        if (_obstracleSpawn.Count<TrapCount)
-            TrapCount = _obstracleSpawn.Count;
-
-        for (int i = 0; i < TrapCount; i++)
+        for (int i = 0; i < _levelCurrent.GetTrapsCount(); i++)
         {
             EnviromentObjectSpawn[] freeObstracle = _obstracleSpawn.Where(obst => obst.IsActive == false).ToArray();
             int randomIndex = Random.Range(0, freeObstracle.Length);
@@ -88,10 +82,7 @@ public class InitializeLevel : MonoBehaviour
         if (_starsSpawn.Count == 0)
             throw new ArgumentNullException(nameof(_starsSpawn));
 
-        if (_starsSpawn.Count < StarCount)
-            StarCount = _starsSpawn.Count;
-
-        for (int i = 0; i < StarCount; i++)
+        for (int i = 0; i < _levelCurrent.GetStarCount(); i++)
         {
             EnviromentObjectSpawn[] freeStars = _starsSpawn.Where(obst => obst.IsActive == false).ToArray();
             int randomIndex = Random.Range(0, freeStars.Length);

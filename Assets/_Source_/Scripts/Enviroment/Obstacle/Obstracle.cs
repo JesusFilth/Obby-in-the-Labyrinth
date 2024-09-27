@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Obstracle : MonoBehaviour
 {
-    [Inject] private LevelStorage _levelStorage;
+    [Inject] private ILevelNavigation _levelNavigation;
 
     private bool _isActive = false;
 
@@ -28,7 +28,7 @@ public class Obstracle : MonoBehaviour
         if(other.TryGetComponent(out Player player))
         {
             _isActive = false;
-            _levelStorage.RestartLevel();
+            _levelNavigation.RestartLevel();
         }
     }
 }

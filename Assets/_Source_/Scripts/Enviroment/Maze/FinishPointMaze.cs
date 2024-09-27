@@ -6,7 +6,7 @@ public class FinishPointMaze : MonoBehaviour
     [SerializeField] private ParticleSystem _portal;
     [SerializeField] private Color _lastLevel;
 
-    [Inject] private LevelStorage _levelStorage;
+    [Inject] private ILevelNavigation _levelNavigation;
 
     private void Awake()
     {
@@ -20,7 +20,7 @@ public class FinishPointMaze : MonoBehaviour
 
     private void ChangeColarChange()
     {
-        if (_levelStorage.IsLastMazeLevel())
+        if (_levelNavigation.IsLastMazeLevel())
         {
             var mainPrticle = _portal.main;
             mainPrticle.startColor = _lastLevel;
@@ -31,7 +31,7 @@ public class FinishPointMaze : MonoBehaviour
     {
         if(other.TryGetComponent(out Player player))
         {
-            _levelStorage.NextLevel();
+            _levelNavigation.NextLevel();
         }
     }
 }

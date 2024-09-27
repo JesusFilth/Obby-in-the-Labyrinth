@@ -7,11 +7,11 @@ public class MazeSizeView : MonoBehaviour
     [SerializeField] private TMP_Text _sizeX;
     [SerializeField] private TMP_Text _sizeY;
 
-    [Inject] private LevelStorage _levelStorage;
+    [Inject] private ILevelCurrent _levelCurrent;
 
     private void Awake()
     {
-        _sizeX.text = _levelStorage.SizeMazeX.ToString();
-        _sizeY.text = _levelStorage.SizeMazeY.ToString();
+        _sizeX.text = _levelCurrent.GetMazeSizeX().ToString();
+        _sizeY.text = _levelCurrent.GetMazeSizeY().ToString();
     }
 }

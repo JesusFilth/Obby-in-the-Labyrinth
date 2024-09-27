@@ -1,19 +1,13 @@
-using GameCreator.Runtime.Characters;
 using System;
+using GameCreator.Runtime.Characters;
+using Reflex.Attributes;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private Character _character;
 
-    public int Star { get; private set; } = 0;
-
-    public event Action<int> StarsChanged;
-
-    private void Start()
-    {
-        StarsChanged?.Invoke(Star);
-    }
+    [Inject] private ILevelStars _levelStars;
 
     public void SetPosition(Transform position)
     {
@@ -22,8 +16,6 @@ public class Player : MonoBehaviour
 
     public void AddStar(int value)
     {
-        Debug.Log("Add Star");
-        Star += value;
-        StarsChanged?.Invoke(Star);
+        _levelStars.AddStar(value);
     }
 }

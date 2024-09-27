@@ -10,15 +10,15 @@ public class LevelView : MonoBehaviour
     [SerializeField] private TMP_Text _currentMaze;
     [SerializeField] private Slider _slider;
 
-    [Inject] private LevelStorage _levelStorage;
+    [Inject] private ILevelCurrent _levelCurrent;
 
     private void Awake()
     {
-        _currentLevel.text = _levelStorage.Level.ToString();
-        _nextLevel.text = (_levelStorage.Level + 1).ToString();
+        _currentLevel.text = _levelCurrent.GetCurrentLevel().ToString();
+        _nextLevel.text = (_levelCurrent.GetCurrentLevel() + 1).ToString();
 
-        _currentMaze.text = _levelStorage.CurrentMaze.ToString();
+        _currentMaze.text = _levelCurrent.GetCurrentLevel().ToString();
 
-        _slider.value = _levelStorage.CurrentMaze-1;
+        _slider.value = _levelCurrent.GetCurrentLevel() - 1;
     }
 }

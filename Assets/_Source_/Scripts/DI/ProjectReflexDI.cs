@@ -7,6 +7,10 @@ public class ProjectReflexDI : MonoBehaviour, IInstaller
 
     public void InstallBindings(ContainerBuilder containerBuilder)
     {
-        containerBuilder.AddSingleton(_levelStorage);
+        containerBuilder.AddSingleton(
+            _levelStorage,
+            typeof(ILevelCurrent),
+            typeof(ILevelNavigation),
+            typeof(ILevelStars));
     }
 }

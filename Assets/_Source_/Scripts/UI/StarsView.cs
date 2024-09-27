@@ -6,16 +6,17 @@ public class StarsView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _text;
 
-    [Inject] private Player _player;
+    [Inject] private ILevelStars _levelStars;
 
     private void OnEnable()
     {
-        _player.StarsChanged += UpdateData;
+        _levelStars.StarsChanged += UpdateData;
+        _levelStars.UpdateStars();
     }
 
     private void OnDisable()
     {
-        _player.StarsChanged -= UpdateData;
+        _levelStars.StarsChanged -= UpdateData;
     }
 
     private void UpdateData(int value)
