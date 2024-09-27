@@ -4466,7 +4466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 133211730}
-  offset: {x: -0.42, y: 8.96, z: -3.78}
+  offset: {x: -0.4, y: 9, z: -3.8}
   lerp: 10
 --- !u!1 &1877317756
 GameObject:
