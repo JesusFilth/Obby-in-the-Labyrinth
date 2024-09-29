@@ -12,5 +12,8 @@ public class ProjectReflexDI : MonoBehaviour, IInstaller
             typeof(ILevelCurrent),
             typeof(ILevelNavigation),
             typeof(ILevelStars));
+
+        containerBuilder.AddSingleton(new GameStateMashine());
+        containerBuilder.AddSingleton(new UserStorage());
     }
 }
