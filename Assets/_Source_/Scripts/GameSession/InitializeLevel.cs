@@ -5,6 +5,7 @@ using Reflex.Attributes;
 using UnityEngine;
 using qtools.qmaze;
 using Random = UnityEngine.Random;
+using System.Collections;
 
 public class InitializeLevel : MonoBehaviour
 {
@@ -16,10 +17,17 @@ public class InitializeLevel : MonoBehaviour
 
     [Inject] private Player _player;
     [Inject] private ILevelCurrent _levelCurrent;
+    [Inject] private UserStorage _userStorage;
+    [Inject] private GlueCreator _glueCreator;
 
-    private void Start()
+    private IEnumerator Start()
     {
+        if(_levelCurrent.InitGame(_userStorage.GetLastLevelNumber()))
+            _glueCreator.Create();
+
         GenerateMaze();
+        yield return new WaitForSeconds(0.15f);
+
         SetPlayerRandomStartPosition();
         CreateTraps();
         CreateStar();
@@ -46,6 +54,7 @@ public class InitializeLevel : MonoBehaviour
         if (starSpawn == null)
             throw new ArgumentNullException(nameof(starSpawn));
 
+        Debug.Log("StarSpawn");
         _starsSpawn.Add(starSpawn);
     }
 
@@ -82,7 +91,7 @@ public class InitializeLevel : MonoBehaviour
         if (_starsSpawn.Count == 0)
             throw new ArgumentNullException(nameof(_starsSpawn));
 
-        for (int i = 0; i < _levelCurrent.GetStarCount(); i++)
+        for (int i = 0; i < _levelCurrent.GetStarCountInMaze(); i++)
         {
             EnviromentObjectSpawn[] freeStars = _starsSpawn.Where(obst => obst.IsActive == false).ToArray();
             int randomIndex = Random.Range(0, freeStars.Length);

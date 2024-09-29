@@ -7,6 +7,8 @@ public class FinishPointMaze : MonoBehaviour
     [SerializeField] private Color _lastLevel;
 
     [Inject] private ILevelNavigation _levelNavigation;
+    [Inject] private StateMashineUI _stateMashineUI;
+    [Inject] private GlueCreator _glueCreator;
 
     private void Awake()
     {
@@ -31,7 +33,15 @@ public class FinishPointMaze : MonoBehaviour
     {
         if(other.TryGetComponent(out Player player))
         {
-            _levelNavigation.NextLevel();
+            if (_levelNavigation.IsLastMazeLevel())
+            {
+                _stateMashineUI.EnterIn<GameOverUIState>();
+            }
+            else
+            {
+                _glueCreator.Create();
+                _levelNavigation.NextMaze();
+            }
         }
     }
 }

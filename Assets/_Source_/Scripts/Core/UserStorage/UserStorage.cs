@@ -12,6 +12,22 @@ public class UserStorage
 
     public event Action<int> GoldChanged;
 
+    public UserStorage()//temp
+    {
+        Debug.Log("Init defaul user stortage");
+        UserModel userModel = new UserModel()
+        {
+            Name = "Player",
+            Gold = 100,
+            Score = 0,
+        };
+
+        userModel.Levels = new LevelModel[1];
+        userModel.Levels[0] = new LevelModel() { Number = 1, Stars = 0 };
+
+        _user = userModel;
+    }
+
     public void SetUser(UserModel user)
     {
         if (user == null)
@@ -36,6 +52,23 @@ public class UserStorage
         }
 
         Save();
+    }
+
+    public int GetLevelStars(int levelNumber)
+    {
+        LevelModel levelFind = _user.Levels.Where(lvl => lvl.Number == levelNumber).FirstOrDefault();
+
+        if (levelFind == null)
+            throw new ArgumentNullException(nameof(levelFind));
+
+        return levelFind.Stars;
+    }
+
+    public int GetLastLevelNumber()
+    {
+        LevelModel levelFind = _user.Levels.Last();
+
+        return levelFind.Number;
     }
 
     public void AddGold(int value)

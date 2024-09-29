@@ -17,8 +17,8 @@ public class LevelView : MonoBehaviour
         _currentLevel.text = _levelCurrent.GetCurrentLevel().ToString();
         _nextLevel.text = (_levelCurrent.GetCurrentLevel() + 1).ToString();
 
-        _currentMaze.text = _levelCurrent.GetCurrentLevel().ToString();
+        _currentMaze.text = _levelCurrent.GetCurrentMaze().ToString();
 
-        _slider.value = _levelCurrent.GetCurrentLevel() - 1;
+        _slider.value = _levelCurrent.GetCurrentMaze() - 1;
     }
 }

@@ -1,4 +1,3 @@
-using Reflex.Attributes;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,32 +9,56 @@ public class LevelStorage : MonoBehaviour,
 {
     private const int StarInMaze = 1;
     private const int MaxSizeForNewLevel = 6;
+    private const int MinMazeSize = 4;
 
-    [Inject] private UserStorage _userStorage;
+    private bool _isFirstGame = false;
 
     public int CurrentMaze { get; private set; } = 1;
     public int Level { get; private set; } = 1;
-    public int SizeMazeX { get; private set; } = 5;
-    public int SizeMazeY { get; private set; } = 5;
     public int CurrentStars { get; private set; } = 0;
 
     public event Action<int> StarsChanged;
 
+    public bool InitGame(int level)
+    {
+        if (_isFirstGame)
+            return false;
+
+        _isFirstGame = true;
+        Level = level;
+
+        return true;
+    }
+
     public bool IsLastMazeLevel() => CurrentMaze == MaxSizeForNewLevel - 1;
 
-    public int GetMazeSizeX() => SizeMazeX;
+    public int GetMazeSizeX() => GetMazeSize();
 
-    public int GetMazeSizeY() => SizeMazeY;
+    public int GetMazeSizeY() => GetMazeSize();
 
     public int GetCurrentLevel() => Level;
 
     public int GetCurrentMaze() => CurrentMaze;
 
-    public void NextLevel()
+    public int GetCurrentStars() => CurrentStars;
+
+    public void NextMaze()
     {
         CurrentMaze++;
-        CheckNewLevel();
 
+        if (CheckNewLevel())
+        {
+            CurrentMaze = 1;
+            Level++;
+
+            CurrentStars = 0;
+        }
+
+        NextLevel();  
+    }
+
+    public void NextLevel()
+    {
         SceneManager.LoadScene(GameSceneNames.Game);
     }
 
@@ -44,14 +67,23 @@ public class LevelStorage : MonoBehaviour,
         SceneManager.LoadScene(GameSceneNames.Game);
     }
 
-    public int GetStarCount() => StarInMaze;
+    public void OpenLevel(int levelNumber)
+    {
+        Level = levelNumber;
+        CurrentMaze = 1;
+        CurrentStars = 0;
+
+        SceneManager.LoadScene(GameSceneNames.Game);
+    }
+
+    public int GetStarCountInMaze() => StarInMaze;
 
     public int GetTrapsCount()
     {
         if (Level == 1)
             return 0;
 
-        return Level * CurrentMaze;
+        return Level + CurrentMaze;
     }
 
     public void AddStar(int count)
@@ -62,20 +94,18 @@ public class LevelStorage : MonoBehaviour,
 
     public void UpdateStars() => StarsChanged?.Invoke(CurrentStars);
 
-    private void CheckNewLevel()
+    private bool CheckNewLevel()
     {
         if((CurrentMaze % MaxSizeForNewLevel) == 0)
         {
-            if(_userStorage != null)
-                _userStorage.AddLevel(Level, CurrentStars);
-
-            SizeMazeX++;
-            SizeMazeY++;
-
-            CurrentMaze = 1;
-            Level++;
-
-            CurrentStars = 0;
+            return true;
         }
+
+        return false;
+    }
+
+    private int GetMazeSize()
+    {
+        return MinMazeSize + Level;
     }
 }
