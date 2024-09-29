@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,11 +14,21 @@ public class LevelStorage : MonoBehaviour,
 
     private bool _isFirstGame = false;
 
+    private LevelStarModel[] _levelStars = new LevelStarModel[5]
+    {
+        new LevelStarModel(){ LevelNumber = 1 },
+        new LevelStarModel(){ LevelNumber = 2 },
+        new LevelStarModel(){ LevelNumber = 3 },
+        new LevelStarModel(){ LevelNumber = 4 },
+        new LevelStarModel(){ LevelNumber = 5 },
+    };
+
     public int CurrentMaze { get; private set; } = 1;
     public int Level { get; private set; } = 1;
     public int CurrentStars { get; private set; } = 0;
 
     public event Action<int> StarsChanged;
+    public event Action<LevelStarModel[]> StarsModelChanged;
 
     public bool InitGame(int level)
     {
@@ -52,6 +63,7 @@ public class LevelStorage : MonoBehaviour,
             Level++;
 
             CurrentStars = 0;
+            ClearLevelStarsModel();
         }
 
         NextLevel();  
@@ -88,11 +100,21 @@ public class LevelStorage : MonoBehaviour,
 
     public void AddStar(int count)
     {
+        LevelStarModel starModel = _levelStars.Where(star => star.LevelNumber == CurrentMaze).FirstOrDefault();
+
+        if (starModel == null)
+            throw new ArgumentNullException(nameof(starModel));
+
+        starModel.HasStar = true;
         CurrentStars += count;
         UpdateStars();
     }
 
-    public void UpdateStars() => StarsChanged?.Invoke(CurrentStars);
+    public void UpdateStars()
+    {
+        StarsModelChanged?.Invoke(_levelStars);
+        StarsChanged?.Invoke(CurrentStars);
+    }
 
     private bool CheckNewLevel()
     {
@@ -107,5 +129,13 @@ public class LevelStorage : MonoBehaviour,
     private int GetMazeSize()
     {
         return MinMazeSize + Level;
+    }
+
+    private void ClearLevelStarsModel()
+    {
+        foreach (LevelStarModel starModel in _levelStars)
+        {
+            starModel.HasStar = false;
+        }
     }
 }
