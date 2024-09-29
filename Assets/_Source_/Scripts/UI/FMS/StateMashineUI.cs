@@ -49,6 +49,6 @@ public class StateMashineUI : MonoBehaviour
             [typeof(GameOverUIState)] = new GameOverUIState(_gameOverUI.GetComponent<IGameUI>()),
         };
 
-        EnterIn<GameUIState>();
+        EnterIn<GameLevelUIState>();
     }
 }

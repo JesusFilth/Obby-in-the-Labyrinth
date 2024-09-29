@@ -10,7 +10,7 @@ public class EnviromentObjectSpawn : MonoBehaviour
 
     public bool IsActive => _item.gameObject.activeSelf;
 
-    private void Awake()
+    private void Start()
     {
         if (DIGameConteiner.Instance != null)
         {

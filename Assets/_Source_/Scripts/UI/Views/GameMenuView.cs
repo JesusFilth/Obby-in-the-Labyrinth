@@ -15,7 +15,6 @@ public class GameMenuView : MonoBehaviour, IGameUI
 
     [SerializeField] private TMP_Text _currentLevel;
     [SerializeField] private TMP_Text _level;
-    [SerializeField] private TMP_Text _stars;
 
     private CanvasGroup _canvasGroup;
     private int _currentChoseLevel;
@@ -68,8 +67,7 @@ public class GameMenuView : MonoBehaviour, IGameUI
     private void UpdateData()
     {
         _currentLevel.text = _levelCurrent.GetCurrentLevel().ToString();
-        _stars.text = _userStorage.GetLevelStars(_currentChoseLevel).ToString();
-        _level.text = _userStorage.GetLevelStars(_currentChoseLevel).ToString();
+        _level.text = _currentChoseLevel.ToString();
 
         ButtonsUpdate();
     }

@@ -26,7 +26,7 @@ public class InitializeLevel : MonoBehaviour
             _glueCreator.Create();
 
         GenerateMaze();
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.55f);
 
         SetPlayerRandomStartPosition();
         CreateTraps();
