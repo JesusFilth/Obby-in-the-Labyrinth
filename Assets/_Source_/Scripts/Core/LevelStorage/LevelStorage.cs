@@ -1,3 +1,4 @@
+using Reflex.Attributes;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,8 @@ public class LevelStorage : MonoBehaviour,
 {
     private const int StarInMaze = 1;
     private const int MaxSizeForNewLevel = 6;
+
+    [Inject] private UserStorage _userStorage;
 
     public int CurrentMaze { get; private set; } = 1;
     public int Level { get; private set; } = 1;
@@ -63,6 +66,9 @@ public class LevelStorage : MonoBehaviour,
     {
         if((CurrentMaze % MaxSizeForNewLevel) == 0)
         {
+            if(_userStorage != null)
+                _userStorage.AddLevel(Level, CurrentStars);
+
             SizeMazeX++;
             SizeMazeY++;
 
@@ -70,8 +76,6 @@ public class LevelStorage : MonoBehaviour,
             Level++;
 
             CurrentStars = 0;
-
-            Debug.Log("Save Progress");
         }
     }
 }

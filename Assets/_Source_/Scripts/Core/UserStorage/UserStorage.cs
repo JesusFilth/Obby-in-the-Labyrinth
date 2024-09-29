@@ -1,5 +1,6 @@
 using Agava.YandexGames;
 using System;
+using System.Linq;
 using UnityEngine;
 
 public class UserStorage
@@ -17,6 +18,24 @@ public class UserStorage
             throw new ArgumentNullException(nameof(user));
 
         _user = user;
+    }
+
+    public void AddLevel(int level, int currentStars)
+    {
+        LevelModel levelFind = _user.Levels.Where(lvl => lvl.Number == level).FirstOrDefault();
+
+        if(levelFind == null)
+        {
+            Array.Resize(ref _user.Levels, _user.Levels.Length+1);
+            _user.Levels[_user.Levels.Length - 1] = new LevelModel() { Number = level, Stars = currentStars };
+        }
+        else
+        {
+            if(levelFind.Stars < currentStars)
+                levelFind.Stars = currentStars;
+        }
+
+        Save();
     }
 
     public void AddGold(int value)
