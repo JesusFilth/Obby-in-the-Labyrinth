@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TextMesh Pro/Examples & Extras/Scenes/_12a___Text_Interactions.unity
     guid: d822229ba0b0ced4aa7db20d4c7eb943
+  - enabled: 1
+    path: Assets/_Source_/Scene/test.unity
+    guid: b669c8948e214a749ab6103e7b3af017
   m_configObjects: {}

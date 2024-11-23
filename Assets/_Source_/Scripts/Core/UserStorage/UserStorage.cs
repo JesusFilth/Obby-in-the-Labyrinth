@@ -75,6 +75,8 @@ public class UserStorage
 
     public int GetLastLevelNumber()
     {
+        if (_user == null) return 1;//temmp
+
         LevelModel levelFind = _user.Levels.Last();
 
         return levelFind.Number;
