@@ -13,6 +13,8 @@ public class GameOverUI : MonoBehaviour, IGameUI
     [SerializeField] private Button _nextLevel;
     [SerializeField] private Button _replayLevel;
 
+    [SerializeField] private StarsConteinerView _starsConteiner;
+
     private CanvasGroup _canvasGroup;
 
     [Inject] private ILevelNavigation _levelNavigation;
@@ -64,6 +66,8 @@ public class GameOverUI : MonoBehaviour, IGameUI
         int stars = _levelCurrent.GetCurrentStars();
 
         _levelNumber.text = currentLevel.ToString();
+
+        _starsConteiner.UpdateData(_levelCurrent.GetCurrentStars());
 
         _userStorage.AddLevel(currentLevel, stars);
         _userStorage.AddLevel(currentLevel + 1, 0);

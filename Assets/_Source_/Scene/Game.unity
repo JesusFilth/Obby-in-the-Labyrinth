@@ -2890,6 +2890,7 @@ MonoBehaviour:
   _play: {fileID: 697322215}
   _currentLevel: {fileID: 104196062}
   _level: {fileID: 1408927883}
+  _starsConteiner: {fileID: 547322895}
 --- !u!225 &419416829
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4427,6 +4428,7 @@ MonoBehaviour:
   _nextLevel: {fileID: 1663077799}
   _currentMaze: {fileID: 240428761}
   _slider: {fileID: 1393967997}
+  _starsConteiner: {fileID: 83872021}
 --- !u!1 &638452078
 GameObject:
   m_ObjectHideFlags: 0
@@ -5609,6 +5611,7 @@ MonoBehaviour:
   _levelNumber: {fileID: 1396127386}
   _nextLevel: {fileID: 1057876856}
   _replayLevel: {fileID: 526268982}
+  _starsConteiner: {fileID: 124405323}
 --- !u!225 &851660913
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -6823,7 +6826,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Replay
+  m_text: "\u041D\u0430\u0447\u0430\u0442\u044C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02fea1fb776e0ad43a5e684a1ab0ce9e, type: 2}
   m_sharedMaterial: {fileID: 942589445191879500, guid: 02fea1fb776e0ad43a5e684a1ab0ce9e, type: 2}
@@ -6850,7 +6853,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48.45
+  m_fontSize: 47.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8262,7 +8265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}

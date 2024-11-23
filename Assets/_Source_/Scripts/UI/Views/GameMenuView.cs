@@ -1,6 +1,7 @@
 ﻿using GameCreator.Runtime.Common;
 using Reflex.Attributes;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -59,7 +60,8 @@ public class GameMenuView : MonoBehaviour, IGameUI
         _canvasGroup.alpha = 1;
         _canvasGroup.interactable = true;
         _canvasGroup.blocksRaycasts = true;
-       
+
+        _currentChoseLevel = _levelCurrent.GetCurrentLevel();
         UpdateData();
 
         TimeManager.Instance.SetTimeScale(0, 5);
@@ -67,11 +69,11 @@ public class GameMenuView : MonoBehaviour, IGameUI
 
     private void UpdateData()
     {
-        _currentChoseLevel = _levelCurrent.GetCurrentLevel();
-
         _currentLevel.text = _levelCurrent.GetCurrentLevel().ToString();
         _level.text = _currentChoseLevel.ToString();
 
+        _starsConteiner.UpdateData(_userStorage.GetLevelStars(_currentChoseLevel));
+        
         ButtonsUpdate();
     }
 
@@ -86,7 +88,6 @@ public class GameMenuView : MonoBehaviour, IGameUI
             _prev.gameObject.SetActive(false);
         else 
             _prev.gameObject.SetActive(true);
-
     }
 
     private void OnClickPrev()

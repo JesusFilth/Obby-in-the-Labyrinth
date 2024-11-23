@@ -7,21 +7,16 @@ public class StarsConteinerView : MonoBehaviour
 
     [SerializeField] private StarView[] _stars = new StarView[MaxStar];
 
-    [Inject] private ILevelStars _levelStars;
+    [Inject] private ILevelStars _levelCurrent;
 
     private void OnEnable()
     {
-        _levelStars.StarsModelChanged += UpdateData;
+        _levelCurrent.StarsChanged += UpdateData;
     }
 
     private void OnDisable()
     {
-        _levelStars.StarsModelChanged -= UpdateData;
-    }
-
-    private void Start()
-    {
-        _levelStars.UpdateStars();
+        _levelCurrent.StarsChanged -= UpdateData;
     }
 
     private void OnValidate()
@@ -30,12 +25,17 @@ public class StarsConteinerView : MonoBehaviour
             _stars = new StarView[MaxStar];
     }
 
-    private void UpdateData(LevelStarModel[] starsModel)
+    public void UpdateData(int star)
     {
-        for (int i = 0; i < _stars.Length; i++)
-        {
-            if (starsModel[i].HasStar)
-                _stars[i].On();
-        }
+        ClearStars();
+
+        for (int i = 0; i < star; i++)
+            _stars[i].On();
+    }
+
+    private void ClearStars()
+    {
+        foreach (StarView star in _stars)
+            star.Off();
     }
 }

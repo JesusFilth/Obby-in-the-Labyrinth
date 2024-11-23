@@ -4,8 +4,8 @@ using System.Linq;
 using Reflex.Attributes;
 using UnityEngine;
 using qtools.qmaze;
-using Random = UnityEngine.Random;
 using System.Collections;
+using Random = UnityEngine.Random;
 
 public class InitializeLevel : MonoBehaviour
 {
@@ -18,14 +18,15 @@ public class InitializeLevel : MonoBehaviour
     [Inject] private Player _player;
     [Inject] private ILevelCurrent _levelCurrent;
     [Inject] private UserStorage _userStorage;
-    [Inject] private GlueCreator _glueCreator;
+    [Inject] private GlueCreator _glueCreator;//?
+
+    private void Awake()
+    {
+        _levelCurrent.InitGame(_userStorage.GetLastLevelNumber());
+    }
 
     private IEnumerator Start()
     {
-        //if(_levelCurrent.InitGame(_userStorage.GetLastLevelNumber()))
-        //    _glueCreator.Create();
-        //_glueCreator.Create();
-
         GenerateMaze();
         yield return new WaitForSeconds(1.0f);
 
@@ -39,6 +40,7 @@ public class InitializeLevel : MonoBehaviour
         if (startPoint == null)
             throw new ArgumentNullException(nameof(startPoint));
 
+        Debug.Log("AddStartPoint");
         _startPoints.Add(startPoint);
     }
 
@@ -55,7 +57,6 @@ public class InitializeLevel : MonoBehaviour
         if (starSpawn == null)
             throw new ArgumentNullException(nameof(starSpawn));
 
-        Debug.Log("StarSpawn");
         _starsSpawn.Add(starSpawn);
     }
 

@@ -14,29 +14,23 @@ public class LevelStorage : MonoBehaviour,
 
     private bool _isFirstGame = false;
 
-    private LevelStarModel[] _levelStars = new LevelStarModel[3]
-    {
-        new LevelStarModel(){ LevelNumber = 1 },
-        new LevelStarModel(){ LevelNumber = 2 },
-        new LevelStarModel(){ LevelNumber = 3 },
-    };
+    public event Action<int> StarsChanged;
 
     public int CurrentMaze { get; private set; } = 1;
     public int Level { get; private set; } = 1;
     public int CurrentStars { get; private set; } = 0;
 
-    public event Action<int> StarsChanged;
-    public event Action<LevelStarModel[]> StarsModelChanged;
+    private bool IsTakeStar = false;
 
-    public bool InitGame(int level)
+    public void InitGame(int level)
     {
+        IsTakeStar = false;
+
         if (_isFirstGame)
-            return false;
+            return;
 
         _isFirstGame = true;
         Level = level;
-
-        return true;
     }
 
     public bool IsLastMazeLevel() => CurrentMaze == MaxSizeForNewLevel - 1;
@@ -61,7 +55,6 @@ public class LevelStorage : MonoBehaviour,
             Level++;
 
             CurrentStars = 0;
-            ClearLevelStarsModel();
         }
 
         NextLevel();  
@@ -74,6 +67,9 @@ public class LevelStorage : MonoBehaviour,
 
     public void RestartLevel()
     {
+        if (IsTakeStar)
+            CurrentStars = Mathf.Clamp(0, CurrentStars-1 ,3);
+
         SceneManager.LoadScene(GameSceneNames.Game);
     }
 
@@ -98,19 +94,8 @@ public class LevelStorage : MonoBehaviour,
 
     public void AddStar(int count)
     {
-        LevelStarModel starModel = _levelStars.Where(star => star.LevelNumber == CurrentMaze).FirstOrDefault();
-
-        if (starModel == null)
-            throw new ArgumentNullException(nameof(starModel));
-
-        starModel.HasStar = true;
+        IsTakeStar = true;
         CurrentStars += count;
-        UpdateStars();
-    }
-
-    public void UpdateStars()
-    {
-        StarsModelChanged?.Invoke(_levelStars);
         StarsChanged?.Invoke(CurrentStars);
     }
 
@@ -127,13 +112,5 @@ public class LevelStorage : MonoBehaviour,
     private int GetMazeSize()
     {
         return MinMazeSize + Level;
-    }
-
-    private void ClearLevelStarsModel()
-    {
-        foreach (LevelStarModel starModel in _levelStars)
-        {
-            starModel.HasStar = false;
-        }
     }
 }

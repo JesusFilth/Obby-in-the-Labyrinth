@@ -2,7 +2,7 @@
 
 public interface ILevelCurrent
 {
-    bool InitGame(int level);
+    void InitGame(int level);
     int GetTrapsCount();
     int GetStarCountInMaze();
     int GetMazeSizeX();

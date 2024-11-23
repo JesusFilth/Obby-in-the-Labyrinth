@@ -10,15 +10,17 @@ public class LevelView : MonoBehaviour
     [SerializeField] private TMP_Text _currentMaze;
     [SerializeField] private Slider _slider;
 
+    [SerializeField] private StarsConteinerView _starsConteiner;
+
     [Inject] private ILevelCurrent _levelCurrent;
 
-    private void Awake()
+    private void Start()
     {
         _currentLevel.text = _levelCurrent.GetCurrentLevel().ToString();
         _nextLevel.text = (_levelCurrent.GetCurrentLevel() + 1).ToString();
-
         _currentMaze.text = _levelCurrent.GetCurrentMaze().ToString();
-
         _slider.value = _levelCurrent.GetCurrentMaze() - 1;
+
+        _starsConteiner.UpdateData(_levelCurrent.GetCurrentStars());
     }
 }
