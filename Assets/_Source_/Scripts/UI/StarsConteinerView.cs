@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class StarsConteinerView : MonoBehaviour
 {
-    private const int MaxStar = 5;
+    private const int MaxStar = 3;
 
     [SerializeField] private StarView[] _stars = new StarView[MaxStar];
 

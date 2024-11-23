@@ -9,18 +9,16 @@ public class LevelStorage : MonoBehaviour,
     ILevelStars
 {
     private const int StarInMaze = 1;
-    private const int MaxSizeForNewLevel = 6;
+    private const int MaxSizeForNewLevel = 4;
     private const int MinMazeSize = 4;
 
     private bool _isFirstGame = false;
 
-    private LevelStarModel[] _levelStars = new LevelStarModel[5]
+    private LevelStarModel[] _levelStars = new LevelStarModel[3]
     {
         new LevelStarModel(){ LevelNumber = 1 },
         new LevelStarModel(){ LevelNumber = 2 },
         new LevelStarModel(){ LevelNumber = 3 },
-        new LevelStarModel(){ LevelNumber = 4 },
-        new LevelStarModel(){ LevelNumber = 5 },
     };
 
     public int CurrentMaze { get; private set; } = 1;

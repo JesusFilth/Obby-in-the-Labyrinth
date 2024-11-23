@@ -22,8 +22,9 @@ public class InitializeLevel : MonoBehaviour
 
     private IEnumerator Start()
     {
-        if(_levelCurrent.InitGame(_userStorage.GetLastLevelNumber()))
-            _glueCreator.Create();
+        //if(_levelCurrent.InitGame(_userStorage.GetLastLevelNumber()))
+        //    _glueCreator.Create();
+        _glueCreator.Create();
 
         GenerateMaze();
         yield return new WaitForSeconds(0.55f);
