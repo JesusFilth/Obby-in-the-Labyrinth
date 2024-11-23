@@ -14,6 +14,13 @@ public class UserStorage
 
     public UserStorage()//temp
     {
+        //if(string.IsNullOrEmpty(PlayerPrefs.GetString(UserKey)))
+
+        //ToDefault();
+    }
+
+    public void ToDefault()
+    {
         Debug.Log("Init defaul user stortage");
         UserModel userModel = new UserModel()
         {
@@ -26,6 +33,8 @@ public class UserStorage
         userModel.Levels[0] = new LevelModel() { Number = 1, Stars = 0 };
 
         _user = userModel;
+
+        Save();
     }
 
     public void SetUser(UserModel user)
@@ -71,7 +80,7 @@ public class UserStorage
         return levelFind.Number;
     }
 
-    public void AddGold(int value)
+    public void AddGold(int value)//?
     {
         _user.Gold += value;
         GoldChanged?.Invoke(_user.Gold);

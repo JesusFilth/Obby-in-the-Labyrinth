@@ -24,10 +24,10 @@ public class InitializeLevel : MonoBehaviour
     {
         //if(_levelCurrent.InitGame(_userStorage.GetLastLevelNumber()))
         //    _glueCreator.Create();
-        _glueCreator.Create();
+        //_glueCreator.Create();
 
         GenerateMaze();
-        yield return new WaitForSeconds(0.55f);
+        yield return new WaitForSeconds(1.0f);
 
         SetPlayerRandomStartPosition();
         CreateTraps();

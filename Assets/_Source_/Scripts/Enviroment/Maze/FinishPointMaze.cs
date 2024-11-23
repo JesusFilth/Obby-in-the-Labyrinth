@@ -8,7 +8,7 @@ public class FinishPointMaze : MonoBehaviour
 
     [Inject] private ILevelNavigation _levelNavigation;
     [Inject] private StateMashineUI _stateMashineUI;
-    [Inject] private GlueCreator _glueCreator;
+    //[Inject] private GlueCreator _glueCreator;
 
     private void Awake()
     {
@@ -39,7 +39,7 @@ public class FinishPointMaze : MonoBehaviour
             }
             else
             {
-                _glueCreator.Create();
+                //_glueCreator.Create();
                 _levelNavigation.NextMaze();
             }
         }

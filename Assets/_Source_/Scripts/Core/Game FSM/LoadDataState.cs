@@ -64,8 +64,8 @@ public class LoadDataState : IGameState
 
     private UserModel GetDeserialize(string json)
     {
-        Debug.Log("Defaul User");
-        return GetDefaultUser();//temp
+        //Debug.Log("Defaul User");
+        //return GetDefaultUser();//temp
 
         if (string.IsNullOrEmpty(json))
             return GetDefaultUser();

@@ -10,15 +10,15 @@ public class GameOverUI : MonoBehaviour, IGameUI
     private const int MaxStarCount = 5;
 
     [SerializeField] private TMP_Text _levelNumber;
-    [SerializeField] private TMP_Text _stars;
     [SerializeField] private Button _nextLevel;
+    [SerializeField] private Button _replayLevel;
 
     private CanvasGroup _canvasGroup;
 
     [Inject] private ILevelNavigation _levelNavigation;
     [Inject] private ILevelCurrent _levelCurrent;
     [Inject] private UserStorage _userStorage;
-    [Inject] private GlueCreator _glueCreator;
+    //[Inject] private GlueCreator _glueCreator;
 
     private void Awake()
     {
@@ -29,11 +29,13 @@ public class GameOverUI : MonoBehaviour, IGameUI
     private void OnEnable()
     {
         _nextLevel.onClick.AddListener(OnClickNextLevel);
+        _replayLevel.onClick.AddListener(OnClickReplayLevel);
     }
 
     private void OnDisable()
     {
         _nextLevel.onClick.RemoveListener(OnClickNextLevel);
+        _replayLevel.onClick.RemoveListener(OnClickReplayLevel);
     }
 
     public void Hide()
@@ -62,7 +64,6 @@ public class GameOverUI : MonoBehaviour, IGameUI
         int stars = _levelCurrent.GetCurrentStars();
 
         _levelNumber.text = currentLevel.ToString();
-        _stars.text = string.Format($"{stars.ToString()}/{MaxStarCount}");
 
         _userStorage.AddLevel(currentLevel, stars);
         _userStorage.AddLevel(currentLevel + 1, 0);
@@ -70,7 +71,13 @@ public class GameOverUI : MonoBehaviour, IGameUI
 
     private void OnClickNextLevel()
     {
-        _glueCreator.Create();
+        //_glueCreator.Create();
         _levelNavigation.NextMaze();
+    }
+
+    private void OnClickReplayLevel()
+    {
+        //_glueCreator.Create();
+        _levelNavigation.RestartLevel();
     }
 }
