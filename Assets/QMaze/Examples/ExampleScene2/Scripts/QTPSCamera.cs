@@ -7,12 +7,13 @@ namespace qtools.qmaze.example2
 	public class QTPSCamera : MonoBehaviour 
 	{
 		public Transform targetTransform;
-		public Vector3 offset = new Vector3(1.0f, 5.0f, 1.0f);
+		public Vector3 offset = new Vector3(-0.4f, 11f, 3.8f);
+		public Vector3 levelCompleted = new Vector3(-0.4f, 4f, -1.0f);
 		public float lerp = 0.4f;
 
 		private Vector3 targetPosition;
 
-		void Start()
+		private void Start()
 		{
 			targetPosition = targetTransform.position;
 
@@ -20,7 +21,7 @@ namespace qtools.qmaze.example2
 			transform.rotation = Quaternion.LookRotation(targetTransform.position - transform.position);
 		}
 
-		void LateUpdate()
+		private void LateUpdate()
 		{
 			if (targetTransform == null) return;
 
@@ -30,5 +31,10 @@ namespace qtools.qmaze.example2
 
 			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetTransform.position - transform.position), lerp * Time.deltaTime);
 		}
+
+		public void ToCompleted()
+		{
+			offset = levelCompleted;
+        }
 	}
 }

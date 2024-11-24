@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using GameCreator.Runtime.VisualScripting;
 using UnityEngine;
 
 public class Friend : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Actions _actions;
 
-    // Update is called once per frame
-    void Update()
+    public void ShowCompleted()
     {
-        
+        _actions?.Invoke();
     }
 }

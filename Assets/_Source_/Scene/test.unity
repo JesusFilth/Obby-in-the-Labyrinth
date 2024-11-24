@@ -17970,6 +17970,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bear
       objectReference: {fileID: 0}
+    - target: {fileID: 3694407498481310743, guid: ccf362f6984542340a28b2d1c730c482, type: 3}
+      propertyPath: managedReferences[5739816288872300577].m_Value
+      value: 
+      objectReference: {fileID: -203655887218126122, guid: f4c2d3cb225b14244b9735f48de01cd2, type: 3}
     - target: {fileID: 6367339593470125020, guid: ccf362f6984542340a28b2d1c730c482, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
