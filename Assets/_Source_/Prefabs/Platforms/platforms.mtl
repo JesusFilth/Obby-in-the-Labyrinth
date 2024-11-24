@@ -1,0 +1,414 @@
+newmtl Oneway1Mtl
+Material Color
+Ka 0.000638183 0.254916 0.632043
+Kd 0.000638183 0.254916 0.632043
+Ks 5.75616e-05 0.0229924 0.0570078 
+
+d 0.101961
+
+Ns 0
+
+newmtl Baseoneway1Mtl
+Material Color
+Ka 0.000638183 0.254916 0.632043
+Kd 0.000638183 0.254916 0.632043
+Ks 5.75616e-05 0.0229924 0.0570078 
+
+d 0.501961
+
+Ns 0
+
+newmtl Anchor1Mtl
+Material Color
+Ka 0.373615 0.368591 0.383775
+Kd 0.373615 0.368591 0.383775
+Ks 0.0234425 0.0231273 0.02408 
+
+d 1
+
+Ns 0
+
+newmtl Base1Mtl
+Material Color
+Ka 1 1 1
+Kd 1 1 1
+Ks 0.0862745 0.0862745 0.0862745 
+
+d 1
+
+Ns 255
+
+map_Ka Base1_diff.png
+map_Kd Base1_diff.png
+map_d Base1_diff.png
+
+map_Bump Base1_nmap.png
+
+map_Ns Base1_spec.png
+
+newmtl Lightblock1Mtl
+Material Color
+Ka 0.334458 0.867136 1
+Kd 0.334458 0.867136 1
+Ks 0.0301668 0.0782122 0.0901961 
+
+d 1
+
+Ns 0
+
+newmtl Glow1Mtl
+Material Color
+Ka 0.0891935 0.409826 1
+Kd 0.0891935 0.409826 1
+Ks 0.00804491 0.0369647 0.0901961 
+
+d 1
+
+Ns 0
+
+newmtl Checkpoint11Mtl
+Material Color
+Ka 0.0962661 0.708298 0.415148
+Kd 0.0962661 0.708298 0.415148
+Ks 0.00868283 0.0638857 0.0374447 
+
+d 0.0509804
+
+Ns 0
+
+newmtl Coinpickup1Mtl
+Material Color
+Ka 0.891262 0.436813 0.0370285
+Kd 0.891262 0.436813 0.0370285
+Ks 0.0803883 0.0393988 0.00333983 
+
+d 0.2
+
+Ns 0
+
+newmtl Roblonx1Mtl
+Material Color
+Ka 1 0.320382 0.722672
+Kd 1 0.320382 0.722672
+Ks 1 0.320382 0.722672 
+
+d 1
+
+Ns 0
+
+map_Ka Roblonx1_diff.png
+map_Kd Roblonx1_diff.png
+map_d Roblonx1_diff.png
+
+map_Bump Roblonx1_nmap.png
+
+map_Ns Roblonx1_spec.png
+
+newmtl Rosphere1Mtl
+Material Color
+Ka 0.0962661 0.708298 0.415148
+Kd 0.0962661 0.708298 0.415148
+Ks 0.0962661 0.708298 0.415148 
+
+d 1
+
+Ns 0
+
+map_Ka Roblonx1_diff.png
+map_Kd Roblonx1_diff.png
+map_d Roblonx1_diff.png
+
+map_Bump Roblonx1_nmap.png
+
+map_Ns Roblonx1_spec.png
+
+newmtl Rosphere2Mtl
+Material Color
+Ka 0.708298 0.708298 0.708298
+Kd 0.708298 0.708298 0.708298
+Ks 0.472199 0.472199 0.472199 
+
+d 1
+
+Ns 255
+
+map_Ka Rosphere2_diff.png
+map_Kd Rosphere2_diff.png
+map_d Rosphere2_diff.png
+
+map_Bump Rosphere2_nmap.png
+
+map_Ns Rosphere2_spec.png
+
+newmtl Floor1Mtl
+Material Color
+Ka 0.363604 0.585973 0.0780566
+Kd 0.363604 0.585973 0.0780566
+Ks 0.00998128 0.0160855 0.00214273 
+
+d 1
+
+Ns 0
+
+map_Ka Floor1_diff.png
+map_Kd Floor1_diff.png
+map_d Floor1_diff.png
+
+map_Bump Floor1_nmap.png
+
+map_Ns Floor1_spec.png
+
+newmtl Step1Mtl
+Material Color
+Ka 1 1 1
+Kd 1 1 1
+Ks 0.0901961 0.0901961 0.0901961 
+
+d 1
+
+Ns 0
+
+map_Ka Step1_diff.png
+map_Kd Step1_diff.png
+map_d Step1_diff.png
+
+map_Bump Step1_nmap.png
+
+map_Ns Step1_spec.png
+
+newmtl Rocklarge1Mtl
+Material Color
+Ka 0.940601 0.940601 0.940601
+Kd 0.940601 0.940601 0.940601
+Ks 0.0811499 0.0811499 0.0811499 
+
+d 1
+
+Ns 255
+
+map_Ka Rocklarge1_diff.png
+map_Kd Rocklarge1_diff.png
+map_d Rocklarge1_diff.png
+
+map_Bump Rocklarge1_nmap.png
+
+map_Ns Rocklarge1_spec.png
+
+newmtl Rocksmall1Mtl
+Material Color
+Ka 0.940601 0.940601 0.940601
+Kd 0.940601 0.940601 0.940601
+Ks 0.0811499 0.0811499 0.0811499 
+
+d 1
+
+Ns 255
+
+map_Ka Rocksmall1_diff.png
+map_Kd Rocksmall1_diff.png
+map_d Rocksmall1_diff.png
+
+map_Bump Rocksmall1_nmap.png
+
+map_Ns Rocksmall1_spec.png
+
+newmtl Light1Mtl
+Material Color
+Ka 0.940601 0.940601 0.940601
+Kd 0.940601 0.940601 0.940601
+Ks 0.0848385 0.0848385 0.0848385 
+
+d 1
+
+Ns 0
+
+newmtl Glowspheres1Mtl
+Material Color
+Ka 0.774227 0.659224 0.476177
+Kd 0.774227 0.659224 0.476177
+Ks 0.0698323 0.0594594 0.0429493 
+
+d 0.752941
+
+Ns 0
+
+newmtl MiddleWall1Mtl
+Material Color
+Ka 0.940601 0.940601 0.940601
+Kd 0.940601 0.940601 0.940601
+Ks 0.0811499 0.0811499 0.0811499 
+
+d 1
+
+Ns 0
+
+map_Ka MiddleWall1_diff.png
+map_Kd MiddleWall1_diff.png
+map_d MiddleWall1_diff.png
+
+map_Bump MiddleWall1_nmap.png
+
+map_Ns MiddleWall1_spec.png
+
+newmtl MiddleWall5Mtl
+Material Color
+Ka 0.612066 0.436813 1
+Kd 0.612066 0.436813 1
+Ks 0.0528057 0.0376858 0.0862745 
+
+d 1
+
+Ns 0
+
+map_Ka MiddleWall1_diff.png
+map_Kd MiddleWall1_diff.png
+map_d MiddleWall1_diff.png
+
+map_Bump MiddleWall1_nmap.png
+
+map_Ns MiddleWall1_spec.png
+
+newmtl MiddleWall8Mtl
+Material Color
+Ka 1 0.409826 0
+Kd 1 0.409826 0
+Ks 0.0862745 0.0353575 0 
+
+d 1
+
+Ns 0
+
+map_Ka MiddleWall1_diff.png
+map_Kd MiddleWall1_diff.png
+map_d MiddleWall1_diff.png
+
+map_Bump MiddleWall1_nmap.png
+
+map_Ns MiddleWall1_spec.png
+
+newmtl Ecfoliagefernc1Mtl
+Material Color
+Ka 0.940601 0.940601 0.940601
+Kd 0.940601 0.940601 0.940601
+Ks 0.0811499 0.0811499 0.0811499 
+
+d 1
+
+Ns 255
+
+map_Ka Ecfoliagefernc1_diff.png
+map_Kd Ecfoliagefernc1_diff.png
+map_d Ecfoliagefernc1_diff.png
+
+map_Bump Ecfoliagefernc1_nmap.png
+
+map_Ns Ecfoliagefernc1_spec.png
+
+newmtl Ivyhanginga1Mtl
+Material Color
+Ka 0.373615 0.368591 0.383775
+Kd 0.373615 0.368591 0.383775
+Ks 0.0322335 0.0318 0.03311 
+
+d 1
+
+Ns 255
+
+map_Ka Ivyhanginga1_diff.png
+map_Kd Ivyhanginga1_diff.png
+map_d Ivyhanginga1_diff.png
+
+map_Bump Ivyhanginga1_nmap.png
+
+map_Ns Ivyhanginga1_spec.png
+
+newmtl Basedj1Mtl
+Material Color
+Ka 1 1 1
+Kd 1 1 1
+Ks 0.0862745 0.0862745 0.0862745 
+
+d 1
+
+Ns 0
+
+map_Ka MiddleWall1_diff.png
+map_Kd MiddleWall1_diff.png
+map_d MiddleWall1_diff.png
+
+map_Bump MiddleWall1_nmap.png
+
+map_Ns MiddleWall1_spec.png
+
+newmtl Baseplate1Mtl
+Material Color
+Ka 0.481952 0.481952 0.481952
+Kd 0.481952 0.481952 0.481952
+Ks 0.481952 0.481952 0.481952 
+
+d 1
+
+Ns 0
+
+map_Ka Roblonx1_diff.png
+map_Kd Roblonx1_diff.png
+map_d Roblonx1_diff.png
+
+map_Bump Roblonx1_nmap.png
+
+map_Ns Roblonx1_spec.png
+
+newmtl Topdj1Mtl
+Material Color
+Ka 1 0.320382 0.722672
+Kd 1 0.320382 0.722672
+Ks 0.0901961 0.0288972 0.0651822 
+
+d 1
+
+Ns 0
+
+map_Ka Step1_diff.png
+map_Kd Step1_diff.png
+map_d Step1_diff.png
+
+map_Bump Step1_nmap.png
+
+map_Ns Step1_spec.png
+
+newmtl Base4Mtl
+Material Color
+Ka 0.0962661 0.708298 0.415148
+Kd 0.0962661 0.708298 0.415148
+Ks 0.00830531 0.061108 0.0358167 
+
+d 1
+
+Ns 0
+
+map_Ka MiddleWall1_diff.png
+map_Kd MiddleWall1_diff.png
+map_d MiddleWall1_diff.png
+
+map_Bump MiddleWall1_nmap.png
+
+map_Ns MiddleWall1_spec.png
+
+newmtl Floor16Mtl
+Material Color
+Ka 1 0.320382 0.722672
+Kd 1 0.320382 0.722672
+Ks 0.0862745 0.0276408 0.0623482 
+
+d 1
+
+Ns 0
+
+map_Ka MiddleWall1_diff.png
+map_Kd MiddleWall1_diff.png
+map_d MiddleWall1_diff.png
+
+map_Bump MiddleWall1_nmap.png
+
+map_Ns MiddleWall1_spec.png
+
