@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6472748}
   - component: {fileID: 3656612043623470392}
   - component: {fileID: 5440700539665211956}
+  - component: {fileID: 2603225089194297553}
   m_Layer: 0
   m_Name: QPieceFinish
   m_TagString: Untagged
@@ -143,6 +144,74 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 9040159503342437623}
+--- !u!114 &2603225089194297553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ecd922218e245e2b85d51f9f08338c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Instructions:
+    m_Instructions:
+    - rid: 5739816288872300741
+    - rid: 5739816288872300738
+  m_TriggerEvent:
+    rid: 5739816288872300736
+  references:
+    version: 2
+    RefIds:
+    - rid: 5739816288872300736
+      type: {class: EventTriggerEnter, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
+      data:
+        m_Collider:
+          m_Option: 1
+          m_GameObject:
+            m_Property:
+              rid: 5739816288872300737
+    - rid: 5739816288872300737
+      type: {class: GetGameObjectPlayer, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
+      data: 
+    - rid: 5739816288872300738
+      type: {class: InstructionCharacterNavigationMoveStop, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
+      data:
+        m_Breakpoint: 0
+        m_IsEnabled: 1
+        m_Character:
+          m_Property:
+            rid: 5739816288872300739
+        m_Priority:
+          m_Property:
+            rid: 5739816288872300740
+    - rid: 5739816288872300739
+      type: {class: GetGameObjectPlayer, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
+      data: 
+    - rid: 5739816288872300740
+      type: {class: GetDecimalInteger, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+      data:
+        m_Value: 5
+    - rid: 5739816288872300741
+      type: {class: InstructionCharacterPropertyIsControllable, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
+      data:
+        m_Breakpoint: 0
+        m_IsEnabled: 1
+        m_Character:
+          m_Property:
+            rid: 5739816288872300742
+        m_IsControllable:
+          m_Property:
+            rid: 5739816288872300743
+    - rid: 5739816288872300742
+      type: {class: GetGameObjectPlayer, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
+      data: 
+    - rid: 5739816288872300743
+      type: {class: GetBoolValue, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+      data:
+        m_Value: 0
 --- !u!1 &8733403319323777553
 GameObject:
   m_ObjectHideFlags: 0

@@ -157,12 +157,12 @@ MonoBehaviour:
     m_UpdateTime: 0
   m_Clipping: 0
   m_ShotType:
-    rid: 5739816272378724368
+    rid: 5739816288872300723
   references:
     version: 2
     RefIds:
-    - rid: 5739816272378724368
-      type: {class: ShotTypeFollow, ns: GameCreator.Runtime.Cameras, asm: GameCreator.Runtime.Core}
+    - rid: 5739816288872300723
+      type: {class: ShotTypeFixed, ns: GameCreator.Runtime.Cameras, asm: GameCreator.Runtime.Core}
       data:
         m_ShotSystemViewport:
           m_Projection:
@@ -184,30 +184,16 @@ MonoBehaviour:
           m_IsActive: 1
           m_LookTarget:
             m_Property:
-              rid: 5739816272378724369
+              rid: 5739816288872300724
           m_LookOffset:
             m_Property:
-              rid: 5739816272378724370
-        m_ShotSystemFollow:
-          m_Follow:
-            m_Property:
-              rid: 5739816272378724371
-          m_Distance:
-            m_Property:
-              rid: 5739816272378724372
-    - rid: 5739816272378724369
+              rid: 5739816288872300725
+    - rid: 5739816288872300724
       type: {class: GetGameObjectPlayer, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
       data: 
-    - rid: 5739816272378724370
+    - rid: 5739816288872300725
       type: {class: GetDirectionVector3Zero, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data: 
-    - rid: 5739816272378724371
-      type: {class: GetGameObjectPlayer, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
-      data: 
-    - rid: 5739816272378724372
-      type: {class: GetDirectionVector, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
-      data:
-        m_Direction: {x: 0, y: 2, z: -3}
 --- !u!4 &231114663
 Transform:
   m_ObjectHideFlags: 0

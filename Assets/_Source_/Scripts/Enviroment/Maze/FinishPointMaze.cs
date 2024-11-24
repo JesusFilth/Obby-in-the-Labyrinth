@@ -7,9 +7,7 @@ public class FinishPointMaze : MonoBehaviour
 
     private Friend _currentFriend;
 
-    [Inject] private ILevelNavigation _levelNavigation;
-    [Inject] private StateMashineUI _stateMashineUI;//?
-    [Inject] private FriendsStorage _friendsStorage;//?
+    [Inject] private FriendsStorage _friendsStorage;
     [Inject] private ILevelCurrent _levelCurrent;
     [Inject] private CompleteLevel _completeLevel;
 
@@ -37,15 +35,6 @@ public class FinishPointMaze : MonoBehaviour
         if(other.TryGetComponent(out Player player))
         {
             _completeLevel.Show(_currentFriend);
-
-            //if (_levelNavigation.IsLastMazeLevel())
-            //{
-            //    _stateMashineUI.EnterIn<GameOverUIState>();
-            //}
-            //else
-            //{
-            //    _levelNavigation.NextMaze();
-            //}
         }
     }
 }
