@@ -28906,13 +28906,13 @@ MonoBehaviour:
         m_Camera:
           m_Property:
             rid: 5739816288872300776
-        m_Delay: 0.3
-        m_Duration: 1
+        m_Delay: 0.1
+        m_Duration: 0.5
         m_ShakeEffect:
           m_ShakePosition: 1
           m_ShakeRotation: 1
-          m_Magnitude: 1.5
-          m_Roughness: 1.5
+          m_Magnitude: 0.3
+          m_Roughness: 5
           m_Transform: {fileID: 0}
           m_Radius: 10
     - rid: 5739816288872300776
