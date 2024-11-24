@@ -23953,6 +23953,7 @@ GameObject:
   - component: {fileID: 5631561037677923580}
   - component: {fileID: 415338523192363635}
   - component: {fileID: 4948917956195466284}
+  - component: {fileID: 689680590203656884}
   m_Layer: 0
   m_Name: FX_PlanetExplotion
   m_TagString: Untagged
@@ -28725,8 +28726,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clearBehavior: 2
   cameraShake:
-    enabled: 1
-    useMainCamera: 1
+    enabled: 0
+    useMainCamera: 0
     cameras: []
     delay: 0.05
     duration: 1.6
@@ -28874,6 +28875,49 @@ MonoBehaviour:
     perlinColor: 0
     perlinColorSpeed: 1
   fadeOutReference: {fileID: 0}
+--- !u!114 &689680590203656884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3157370685969289855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ecd922218e245e2b85d51f9f08338c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Instructions:
+    m_Instructions:
+    - rid: 5739816288872300775
+  m_TriggerEvent:
+    rid: 5739816288872300765
+  references:
+    version: 2
+    RefIds:
+    - rid: 5739816288872300765
+      type: {class: EventOnStart, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
+      data: 
+    - rid: 5739816288872300775
+      type: {class: InstructionCameraShakeBurst, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
+      data:
+        m_Breakpoint: 0
+        m_IsEnabled: 1
+        m_Camera:
+          m_Property:
+            rid: 5739816288872300776
+        m_Delay: 0.3
+        m_Duration: 1
+        m_ShakeEffect:
+          m_ShakePosition: 1
+          m_ShakeRotation: 1
+          m_Magnitude: 1.5
+          m_Roughness: 1.5
+          m_Transform: {fileID: 0}
+          m_Radius: 10
+    - rid: 5739816288872300776
+      type: {class: GetGameObjectCameraMain, ns: GameCreator.Runtime.Cameras, asm: GameCreator.Runtime.Core}
+      data: 
 --- !u!1 &7198856186684072249
 GameObject:
   m_ObjectHideFlags: 0
