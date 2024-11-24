@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class FinishPointMaze : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem _portal;
-    [SerializeField] private Color _lastLevel;
+    [SerializeField] private Transform _spawnPoint;
 
     [Inject] private ILevelNavigation _levelNavigation;
     [Inject] private StateMashineUI _stateMashineUI;
-    //[Inject] private GlueCreator _glueCreator;
+    [Inject] private FriendsStorage _friendsStorage;
+    [Inject] private ILevelCurrent _levelCurrent;
 
     private void Awake()
     {
@@ -16,17 +16,17 @@ public class FinishPointMaze : MonoBehaviour
         {
             DIGameConteiner.Instance.InjectRecursive(gameObject);
         }
-
-        ChangeColarChange();
     }
 
-    private void ChangeColarChange()
+    private void Start()
     {
-        if (_levelNavigation.IsLastMazeLevel())
-        {
-            var mainPrticle = _portal.main;
-            mainPrticle.startColor = _lastLevel;
-        }
+        Initialize();
+    }
+
+    private void Initialize()
+    {
+        Friend friend = _friendsStorage.GetFriend(_levelCurrent.GetCurrentLevel());
+        Instantiate(friend, _spawnPoint, false); 
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,7 +39,6 @@ public class FinishPointMaze : MonoBehaviour
             }
             else
             {
-                //_glueCreator.Create();
                 _levelNavigation.NextMaze();
             }
         }

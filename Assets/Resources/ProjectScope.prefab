@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 23230285648027531}
   - component: {fileID: -3102082804114525421}
   - component: {fileID: -4492813952184219597}
+  - component: {fileID: -6516170290971526615}
   m_Layer: 0
   m_Name: ProjectScope
   m_TagString: Untagged
@@ -59,6 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelStorage: {fileID: -4492813952184219597}
+  _friendsStorage: {fileID: -6516170290971526615}
 --- !u!114 &-4492813952184219597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,3 +73,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5805516f4361224418b7629fe6f9c7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6516170290971526615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4622146292610223368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75fa5e67df924f34dba0d8581106bcc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friends:
+  - {fileID: 7437716675068853858, guid: 94bc407eb066c8d42b36b9e7a621d31d, type: 3}
+  - {fileID: 3570249157390358687, guid: ccf362f6984542340a28b2d1c730c482, type: 3}
