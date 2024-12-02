@@ -86,5 +86,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   friends:
-  - {fileID: 7437716675068853858, guid: 94bc407eb066c8d42b36b9e7a621d31d, type: 3}
+  - {fileID: 5389900952946211263, guid: 751c6ddd0617a7543bff82114e5a565b, type: 3}
+  - {fileID: 3570249157390358687, guid: ccf362f6984542340a28b2d1c730c482, type: 3}
   - {fileID: 3570249157390358687, guid: ccf362f6984542340a28b2d1c730c482, type: 3}
