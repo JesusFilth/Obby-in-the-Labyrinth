@@ -1,13 +1,9 @@
-using Agava.YandexGames;
 using UnityEngine;
 
 public class MainMenuInterstitialAd : MonoBehaviour
 {
     private void Start()
     {
-#if UNITY_WEBGL && !UNITY_EDITOR
-        InterstitialAd.Show(OnOpenAdCallback, OnCloseAdCallback);
-#endif
     }
 
     private void OnOpenAdCallback()
