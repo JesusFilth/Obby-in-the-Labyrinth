@@ -1,70 +1,60 @@
 using System;
 using System.Linq;
+using GamePush;
 using UnityEngine;
 
 public class UserStorage
 {
-    private const string UserKey = "User";
-    private const string LeaderboardName = "Leaderboard";
-
-    private UserModel _user;
-
-    public event Action<int> GoldChanged;
-
-    public UserStorage()//temp
-    {
-        //if(string.IsNullOrEmpty(PlayerPrefs.GetString(UserKey)))
-
-        //ToDefault();
-    }
-
-    public void ToDefault()
-    {
-        Debug.Log("Init defaul user stortage");
-        UserModel userModel = new UserModel()
-        {
-            Name = "Player",
-            Gold = 100,
-            Score = 0,
-        };
-
-        userModel.Levels = new LevelModel[1];
-        userModel.Levels[0] = new LevelModel() { Number = 1, Stars = 0 };
-
-        _user = userModel;
-
-        Save();
-    }
-
-    public void SetUser(UserModel user)
-    {
-        if (user == null)
-            throw new ArgumentNullException(nameof(user));
-
-        _user = user;
-    }
+    private const string GoldKey = "gold";
+    private const string LevelKey = "level-model";
 
     public void AddLevel(int level, int currentStars)
     {
-        LevelModel levelFind = _user.Levels.Where(lvl => lvl.Number == level).FirstOrDefault();
+        string json = GP_Player.GetString(LevelKey);
 
-        if(levelFind == null)
+        if (string.IsNullOrEmpty(json))
         {
-            Array.Resize(ref _user.Levels, _user.Levels.Length+1);
-            _user.Levels[_user.Levels.Length - 1] = new LevelModel() { Number = level, Stars = currentStars };
+            CreateDafaultLevels(level, currentStars);
+            Save();
+
+            return;
+        }
+
+        LevelModel[] levelModels = JsonUtility.FromJson<LevelModel[]>(json);
+        LevelModel levelFind = levelModels.Where(lvl => lvl.Number == level).FirstOrDefault();
+
+        if (levelFind == null)
+        {
+            Array.Resize(ref levelModels, levelModels.Length + 1);
+            levelModels[levelModels.Length - 1] = new LevelModel() { Number = level, Stars = currentStars };
         }
         else
         {
-            if(levelFind.Stars < currentStars)
+            if (levelFind.Stars < currentStars)
                 levelFind.Stars = currentStars;
         }
+
+        json = JsonUtility.ToJson(levelModels);
+
+        GP_Player.Set(LevelKey, json);
 
         Save();
     }
 
     public int GetLevelStars(int levelNumber)
     {
-        LevelModel levelFind = _user.Levels.Where(lvl => lvl.Number == levelNumber).FirstOrDefault();
+        string json = GP_Player.GetString(LevelKey);
+
+        if (string.IsNullOrEmpty(json))
+        {
+            CreateDafaultLevels(1, 0);
+            Save();
+
+            return 0;
+        }
+
+        LevelModel[] levelModels = JsonUtility.FromJson<LevelModel[]>(json);
+        LevelModel levelFind = levelModels.Where(lvl => lvl.Number == levelNumber).FirstOrDefault();
 
         if (levelFind == null)
             throw new ArgumentNullException(nameof(levelFind));
@@ -74,59 +64,45 @@ public class UserStorage
 
     public int GetLastLevelNumber()
     {
-        if (_user == null) return 1;//temmp
+        string json = GP_Player.GetString(LevelKey);
 
-        LevelModel levelFind = _user.Levels.Last();
+        if (string.IsNullOrEmpty(json))
+        {
+            CreateDafaultLevels(1, 0);
+            Save();
 
-        return levelFind.Number;
-    }
+            return 1;
+        }
 
-    public void AddGold(int value)//?
-    {
-        _user.Gold += value;
-        GoldChanged?.Invoke(_user.Gold);
-        Save();
+        LevelModel[] levelModels = JsonUtility.FromJson<LevelModel[]>(json);
+
+        return levelModels.Length;
     }
 
     public void AddScore(int score)
     {
-        if(_user.Score < score)
-            _user.Score = score;
+        GP_Player.AddScore(score);
 
         Save();
-        UpdatePlayerScore();
     }
 
-    public void UpdateGold()
+    public void ToDefault()
     {
-        GoldChanged.Invoke(_user.Gold);
+        CreateDafaultLevels(1,0);
+        Save();
     }
 
-    private void UpdatePlayerScore()
+    private void CreateDafaultLevels(int level, int stars)
     {
-#if UNITY_WEBGL && !UNITY_EDITOR
-   if (PlayerAccount.IsAuthorized == false)
-            return;
+        LevelModel[] levelModels = new LevelModel[1];
+        levelModels[0] = new LevelModel() { Number = level, Stars = stars };
 
-        int score = _user.Score;
-
-        Leaderboard.GetPlayerEntry(LeaderboardName, (result) =>
-        {
-            if (result == null || result.score < score)
-                Leaderboard.SetScore(LeaderboardName, score);
-        });
-#endif
+        string json = JsonUtility.ToJson(levelModels);
+        GP_Player.Set(LevelKey, json);
     }
 
     private void Save()
     {
-        string json = JsonUtility.ToJson(_user);
-        PlayerPrefs.SetString(UserKey, json);
-        PlayerPrefs.Save();
-
-#if UNITY_WEBGL && !UNITY_EDITOR
-        if (PlayerAccount.IsAuthorized)
-            PlayerAccount.SetCloudSaveData(json);
-#endif
+        GP_Player.Sync();
     }
 }

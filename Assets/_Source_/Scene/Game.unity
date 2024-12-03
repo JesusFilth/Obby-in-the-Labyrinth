@@ -1189,7 +1189,6 @@ GameObject:
   m_Component:
   - component: {fileID: 108576638}
   - component: {fileID: 108576641}
-  - component: {fileID: 108576640}
   - component: {fileID: 108576639}
   m_Layer: 0
   m_Name: Camera
@@ -1230,14 +1229,6 @@ MonoBehaviour:
   _rotationSpeed: 15
   _height: 10
   _verticalOffsetAngle: 1
---- !u!81 &108576640
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 108576637}
-  m_Enabled: 1
 --- !u!20 &108576641
 Camera:
   m_ObjectHideFlags: 0

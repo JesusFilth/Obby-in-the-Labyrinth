@@ -454,6 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 242d5d2c84a01aa45a0553c11db5e57a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _name: 1
   _actions: {fileID: 3256439594213803419}
 --- !u!114 &3694407498481310743
 MonoBehaviour:

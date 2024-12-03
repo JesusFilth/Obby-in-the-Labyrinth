@@ -13,7 +13,6 @@ public class LifeRewardUI : MonoBehaviour, IGameUI
     private bool _isHasLife;
 
     [Inject] private StateMashineUI _gameUI;
-    //[Inject] private IGamePlayer _player;
 
     private void Awake()
     {
@@ -57,11 +56,7 @@ public class LifeRewardUI : MonoBehaviour, IGameUI
 
     private void ShowReward()
     {
-#if UNITY_WEBGL && !UNITY_EDITOR
-        Agava.YandexGames.VideoAd.Show(OnOpenCallback, OnRevardCallback, OnCloseCallback);
-#else
-        OnRevardCallback();
-#endif
+
     }
 
     private void ToContinue()
