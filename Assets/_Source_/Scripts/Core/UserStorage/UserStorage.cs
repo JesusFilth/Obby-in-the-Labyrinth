@@ -20,13 +20,13 @@ public class UserStorage
             return;
         }
 
-        LevelModel[] levelModels = JsonUtility.FromJson<LevelModel[]>(json);
-        LevelModel levelFind = levelModels.Where(lvl => lvl.Number == level).FirstOrDefault();
+        LevelModelStorage levelModelStorage = JsonUtility.FromJson<LevelModelStorage>(json);
+        LevelModel levelFind = levelModelStorage.Levels.Where(lvl => lvl.Number == level).FirstOrDefault();
 
         if (levelFind == null)
         {
-            Array.Resize(ref levelModels, levelModels.Length + 1);
-            levelModels[levelModels.Length - 1] = new LevelModel() { Number = level, Stars = currentStars };
+            Array.Resize(ref levelModelStorage.Levels, levelModelStorage.Levels.Length + 1);
+            levelModelStorage.Levels[levelModelStorage.Levels.Length - 1] = new LevelModel() { Number = level, Stars = currentStars };
         }
         else
         {
@@ -34,7 +34,7 @@ public class UserStorage
                 levelFind.Stars = currentStars;
         }
 
-        json = JsonUtility.ToJson(levelModels);
+        json = JsonUtility.ToJson(levelModelStorage);
 
         GP_Player.Set(LevelKey, json);
 
@@ -53,8 +53,8 @@ public class UserStorage
             return 0;
         }
 
-        LevelModel[] levelModels = JsonUtility.FromJson<LevelModel[]>(json);
-        LevelModel levelFind = levelModels.Where(lvl => lvl.Number == levelNumber).FirstOrDefault();
+        LevelModelStorage levelModelStorage = JsonUtility.FromJson<LevelModelStorage>(json);
+        LevelModel levelFind = levelModelStorage.Levels.Where(lvl => lvl.Number == levelNumber).FirstOrDefault();
 
         if (levelFind == null)
             throw new ArgumentNullException(nameof(levelFind));
@@ -74,15 +74,13 @@ public class UserStorage
             return 1;
         }
 
-        LevelModel[] levelModels = JsonUtility.FromJson<LevelModel[]>(json);
-
-        return levelModels.Length;
+        LevelModelStorage levelModelStorage = JsonUtility.FromJson<LevelModelStorage>(json);
+        return levelModelStorage.Levels.Length;
     }
 
     public void AddScore(int score)
     {
         GP_Player.AddScore(score);
-
         Save();
     }
 
@@ -97,7 +95,9 @@ public class UserStorage
         LevelModel[] levelModels = new LevelModel[1];
         levelModels[0] = new LevelModel() { Number = level, Stars = stars };
 
-        string json = JsonUtility.ToJson(levelModels);
+        LevelModelStorage levelModelStorage = new LevelModelStorage() { Levels = levelModels };
+
+        string json = JsonUtility.ToJson(levelModelStorage);
         GP_Player.Set(LevelKey, json);
     }
 
