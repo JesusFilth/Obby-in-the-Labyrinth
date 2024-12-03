@@ -20,7 +20,6 @@ public class GameOverUI : MonoBehaviour, IGameUI
     [Inject] private ILevelNavigation _levelNavigation;
     [Inject] private ILevelCurrent _levelCurrent;
     [Inject] private UserStorage _userStorage;
-    //[Inject] private GlueCreator _glueCreator;
 
     private void Awake()
     {
@@ -75,13 +74,11 @@ public class GameOverUI : MonoBehaviour, IGameUI
 
     private void OnClickNextLevel()
     {
-        //_glueCreator.Create();
         _levelNavigation.NextMaze();
     }
 
     private void OnClickReplayLevel()
     {
-        //_glueCreator.Create();
         _levelNavigation.RestartLevel();
     }
 }
