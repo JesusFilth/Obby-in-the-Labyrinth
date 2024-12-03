@@ -1,6 +1,6 @@
 ﻿public class LifeRewardUIState : GameUIState
 {
-    public LifeRewardUIState(IGameUI view)
+    public LifeRewardUIState(GameView view)
         : base(view)
     {
 

@@ -4,8 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(CanvasGroup))]
-public class GameOverUI : MonoBehaviour, IGameUI
+public class GameOverUI : GameView
 {
     private const int MaxStarCount = 5;
 
@@ -15,17 +14,9 @@ public class GameOverUI : MonoBehaviour, IGameUI
 
     [SerializeField] private StarsConteinerView _starsConteiner;
 
-    private CanvasGroup _canvasGroup;
-
     [Inject] private ILevelNavigation _levelNavigation;
     [Inject] private ILevelCurrent _levelCurrent;
     [Inject] private UserStorage _userStorage;
-
-    private void Awake()
-    {
-        _canvasGroup = GetComponent<CanvasGroup>();
-        Hide();
-    }
 
     private void OnEnable()
     {
@@ -39,21 +30,15 @@ public class GameOverUI : MonoBehaviour, IGameUI
         _replayLevel.onClick.RemoveListener(OnClickReplayLevel);
     }
 
-    public void Hide()
+    public override void Hide()
     {
-        _canvasGroup.alpha = 0;
-        _canvasGroup.interactable = false;
-        _canvasGroup.blocksRaycasts = false;
-
+        SetCanvasVisibility(false);
         TimeManager.Instance.SetTimeScale(1, 5);
     }
 
-    public void Show()
+    public override void Show()
     {
-        _canvasGroup.alpha = 1;
-        _canvasGroup.interactable = true;
-        _canvasGroup.blocksRaycasts = true;
-
+        SetCanvasVisibility(true);
         UpdateData();
 
         TimeManager.Instance.SetTimeScale(0, 5);

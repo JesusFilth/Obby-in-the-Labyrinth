@@ -1,6 +1,6 @@
 ﻿public class GameMenuStateUI : GameUIState
 {
-    public GameMenuStateUI(IGameUI view)
+    public GameMenuStateUI(GameView view)
         : base(view)
     {
     }

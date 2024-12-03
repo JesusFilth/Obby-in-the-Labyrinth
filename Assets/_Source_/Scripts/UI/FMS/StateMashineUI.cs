@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class StateMashineUI : MonoBehaviour
 {
-    [SerializeField][SerializeInterface(typeof(IGameUI))] private GameObject _gameUI;
-    [SerializeField][SerializeInterface(typeof(IGameUI))] private GameObject _menu;
-    [SerializeField][SerializeInterface(typeof(IGameUI))] private GameObject _rewardLifeUI;
-    [SerializeField][SerializeInterface(typeof(IGameUI))] private GameObject _gameOverUI;
-    [SerializeField][SerializeInterface(typeof(IGameUI))] private GameObject _collectionUI;
+    [SerializeField] private GameView _gameUI;
+    [SerializeField] private GameView _menu;
+    [SerializeField] private GameView _rewardLifeUI;
+    [SerializeField] private GameView _gameOverUI;
+    [SerializeField] private GameView _collectionUI;
 
     private GameUIState _currentState;
     private Dictionary<Type, GameUIState> _states;
-
-    private void OnValidate()
-    {
-    }
 
     private void Awake()
     {
@@ -37,11 +33,11 @@ public class StateMashineUI : MonoBehaviour
     {
         _states = new Dictionary<Type, GameUIState>()
         {
-            [typeof(GameLevelUIState)] = new GameLevelUIState(_gameUI.GetComponent<IGameUI>()),
-            [typeof(GameMenuStateUI)] = new GameMenuStateUI(_menu.GetComponent<IGameUI>()),
-            [typeof(LifeRewardUIState)] = new LifeRewardUIState(_rewardLifeUI.GetComponent<IGameUI>()),
-            [typeof(GameOverUIState)] = new GameOverUIState(_gameOverUI.GetComponent<IGameUI>()),
-            [typeof(CollectionUIState)] = new CollectionUIState(_collectionUI.GetComponent<IGameUI>())
+            [typeof(GameLevelUIState)] = new GameLevelUIState(_gameUI),
+            [typeof(GameMenuStateUI)] = new GameMenuStateUI(_menu),
+            [typeof(LifeRewardUIState)] = new LifeRewardUIState(_rewardLifeUI),
+            [typeof(GameOverUIState)] = new GameOverUIState(_gameOverUI),
+            [typeof(CollectionUIState)] = new CollectionUIState(_collectionUI)
         };
 
         EnterIn<GameLevelUIState>();

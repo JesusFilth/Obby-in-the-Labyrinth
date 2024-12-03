@@ -8518,7 +8518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1031604721
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8547,7 +8547,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031604720}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -14342,11 +14342,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a5d59a1b4379e46ba91368cca3636a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameUI: {fileID: 1383417177}
-  _menu: {fileID: 419416826}
-  _rewardLifeUI: {fileID: 954571088}
-  _gameOverUI: {fileID: 851660911}
-  _collectionUI: {fileID: 1031604720}
+  _gameUI: {fileID: 1383417182}
+  _menu: {fileID: 419416828}
+  _rewardLifeUI: {fileID: 954571090}
+  _gameOverUI: {fileID: 851660912}
+  _collectionUI: {fileID: 1031604726}
 --- !u!4 &1737854770
 Transform:
   m_ObjectHideFlags: 0

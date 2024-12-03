@@ -3,22 +3,18 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-[RequireComponent(typeof(CanvasGroup))]
-public class LevelInitUI : MonoBehaviour, IGameUI
+public class LevelInitUI : GameView
 {
     [SerializeField] private TMP_Text _level;
     [SerializeField] private float _delay = 3;
 
-    private CanvasGroup _canvasGroup;
     private Coroutine _coroutine;
     private WaitForSeconds _waitForSeconds;
 
-    //[Inject] private IGameProgress _progress;
     [Inject] private StateMashineUI _stateMashineUI;
 
-    private void Awake()
+    private void OnEnable()
     {
-        _canvasGroup = GetComponent<CanvasGroup>();
         _waitForSeconds = new WaitForSeconds(_delay);
     }
 
@@ -31,18 +27,14 @@ public class LevelInitUI : MonoBehaviour, IGameUI
         }
     }
 
-    public void Hide()
+    public override void Hide()
     {
-        _canvasGroup.alpha = 0;
-        _canvasGroup.blocksRaycasts = false;
-        _canvasGroup.interactable = false;
+        SetCanvasVisibility(false);
     }
 
-    public void Show()
+    public override void Show()
     {
-        _canvasGroup.alpha = 1;
-        _canvasGroup.blocksRaycasts = true;
-        _canvasGroup.interactable = true;
+        SetCanvasVisibility(true);
 
         //_level.text = _progress.GetPlayerProgress().LevelCount.ToString();
 

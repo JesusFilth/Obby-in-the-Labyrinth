@@ -1,31 +1,16 @@
 using GameCreator.Runtime.Common;
-using UnityEngine;
 
-[RequireComponent(typeof(CanvasGroup))]
-public class CollectionView : MonoBehaviour, IGameUI
+public class CollectionView : GameView
 {
-    private CanvasGroup _canvasGroup;
-
-    private void Awake()
+    public override void Hide()
     {
-        _canvasGroup = GetComponent<CanvasGroup>();
-        Hide();
-    }
-
-    public void Hide()
-    {
-        _canvasGroup.alpha = 0;
-        _canvasGroup.interactable = false;
-        _canvasGroup.blocksRaycasts = false;
-
+        SetCanvasVisibility(false);
         TimeManager.Instance.SetTimeScale(1, 5);
     }
 
-    public void Show()
+    public override void Show()
     {
-        _canvasGroup.alpha = 1;
-        _canvasGroup.interactable = true;
-        _canvasGroup.blocksRaycasts = true;
+        SetCanvasVisibility(true);
 
         UpdateData();
 

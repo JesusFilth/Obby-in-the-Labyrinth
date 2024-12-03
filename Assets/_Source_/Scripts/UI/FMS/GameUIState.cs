@@ -2,9 +2,9 @@ using System;
 
 public abstract class GameUIState
 {
-    private IGameUI _view;
+    private GameView _view;
 
-    public GameUIState(IGameUI view)
+    public GameUIState(GameView view)
     {
         if(view == null)
             throw new ArgumentNullException(nameof(view));
@@ -12,7 +12,7 @@ public abstract class GameUIState
         _view = view;
     }
 
-    public virtual void Open() => _view.Show();
+    public void Open() => _view.Show();
 
-    public virtual void Close() => _view.Hide();
+    public void Close() => _view.Hide();
 }

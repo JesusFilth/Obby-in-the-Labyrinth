@@ -5,8 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(CanvasGroup))]
-public class GameMenuView : MonoBehaviour, IGameUI
+public class GameMenuView : GameView
 {
     private const int FirstLevelNumber = 1;
 
@@ -19,18 +18,12 @@ public class GameMenuView : MonoBehaviour, IGameUI
 
     [SerializeField] private StarsConteinerView _starsConteiner;
 
-    private CanvasGroup _canvasGroup;
     private int _currentChoseLevel;
 
     [Inject] private ILevelCurrent _levelCurrent;
     [Inject] private ILevelNavigation _levelNavigation;
     [Inject] private ILevelStars _levelStars;
     [Inject] private UserStorage _userStorage;
-
-    private void Awake()
-    {
-        _canvasGroup = GetComponent<CanvasGroup>();
-    }
 
     private void OnEnable()
     {
@@ -46,21 +39,15 @@ public class GameMenuView : MonoBehaviour, IGameUI
         _play.onClick.RemoveListener(OnClickPlay);
     }
 
-    public void Hide()
+    public override void Hide()
     {
-        _canvasGroup.alpha = 0;
-        _canvasGroup.interactable = false;
-        _canvasGroup.blocksRaycasts = false;
-
+        SetCanvasVisibility(false);
         TimeManager.Instance.SetTimeScale(1, 5);
     }
 
-    public void Show()
+    public override void Show()
     {
-        _canvasGroup.alpha = 1;
-        _canvasGroup.interactable = true;
-        _canvasGroup.blocksRaycasts = true;
-
+        SetCanvasVisibility(true);
         _currentChoseLevel = _levelCurrent.GetCurrentLevel();
         UpdateData();
 

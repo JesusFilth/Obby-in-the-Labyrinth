@@ -1,6 +1,6 @@
 ﻿public class CollectionUIState : GameUIState
 {
-    public CollectionUIState(IGameUI view)
+    public CollectionUIState(GameView view)
         : base(view)
     {
     }

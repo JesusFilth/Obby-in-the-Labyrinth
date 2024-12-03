@@ -1,6 +1,6 @@
 public class GameLevelUIState : GameUIState
 {
-    public GameLevelUIState(IGameUI view)
+    public GameLevelUIState(GameView view)
         : base(view)
     {
 
