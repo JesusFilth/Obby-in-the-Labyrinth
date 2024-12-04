@@ -5,7 +5,6 @@ using UnityEngine;
 public class Obstracle : MonoBehaviour
 {
     [Inject] private ILevelNavigation _levelNavigation;
-    //[Inject] private GlueCreator _glueCreator;
 
     private bool _isActive = false;
 
@@ -28,7 +27,6 @@ public class Obstracle : MonoBehaviour
 
         if(other.TryGetComponent(out Player player))
         {
-            //_glueCreator.Create();
             _isActive = false;
             _levelNavigation.RestartLevel();
         }

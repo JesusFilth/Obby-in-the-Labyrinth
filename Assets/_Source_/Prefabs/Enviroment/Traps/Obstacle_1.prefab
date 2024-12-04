@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 1608632332156290672}
   - component: {fileID: 107764679824483773}
   - component: {fileID: 7192682882111943539}
-  - component: {fileID: 8635031611992179266}
+  - component: {fileID: 7894737665660238746}
   m_Layer: 0
   m_Name: Obstacle_1
   m_TagString: Untagged
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 150
---- !u!114 &8635031611992179266
+--- !u!114 &7894737665660238746
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -252,6 +252,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5992385911894519186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91b5a4355fd0b2648803e083d7cbba94, type: 3}
+  m_Script: {fileID: 11500000, guid: afadd619fe11dd34c833c5a288044254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _levelNeed: 2

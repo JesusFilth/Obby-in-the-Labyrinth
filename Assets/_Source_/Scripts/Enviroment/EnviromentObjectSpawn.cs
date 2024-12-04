@@ -2,7 +2,7 @@ using System;
 using Reflex.Attributes;
 using UnityEngine;
 
-public class EnviromentObjectSpawn : MonoBehaviour
+public abstract class EnviromentObjectSpawn : MonoBehaviour
 {
     [SerializeField] private EnviromentObject _item;
 
@@ -32,9 +32,7 @@ public class EnviromentObjectSpawn : MonoBehaviour
         }
     }
 
-    protected virtual void InitOnLevel() 
-    {
-    }
+    protected abstract void InitOnLevel();
 
     public void On()
     {
@@ -42,6 +40,14 @@ public class EnviromentObjectSpawn : MonoBehaviour
             return;
 
         _item.gameObject.SetActive(true);
+    }
+
+    public bool CanSpawn(int level)
+    {
+        if(_item.LevelNeed <= level && IsActive == false)
+            return true;
+
+        return false;
     }
 
     private void Validate()

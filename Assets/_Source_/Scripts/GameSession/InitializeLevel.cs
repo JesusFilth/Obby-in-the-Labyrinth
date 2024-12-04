@@ -18,7 +18,6 @@ public class InitializeLevel : MonoBehaviour
     [Inject] private Player _player;
     [Inject] private ILevelCurrent _levelCurrent;
     [Inject] private UserStorage _userStorage;
-    [Inject] private GlueCreator _glueCreator;//?
 
     private void Awake()
     {
@@ -35,12 +34,11 @@ public class InitializeLevel : MonoBehaviour
         CreateStar();
     }
 
-    public void AddStartPoint(StartPointMaze startPoint)
+    public void AddPlayerStartPoint(StartPointMaze startPoint)
     {
         if (startPoint == null)
             throw new ArgumentNullException(nameof(startPoint));
 
-        Debug.Log("AddStartPoint");
         _startPoints.Add(startPoint);
     }
 
@@ -82,7 +80,11 @@ public class InitializeLevel : MonoBehaviour
 
         for (int i = 0; i < _levelCurrent.GetTrapsCount(); i++)
         {
-            EnviromentObjectSpawn[] freeObstracle = _obstracleSpawn.Where(obst => obst.IsActive == false).ToArray();
+            EnviromentObjectSpawn[] freeObstracle = _obstracleSpawn.Where(obst => obst.CanSpawn(_levelCurrent.GetCurrentLevel())).ToArray();
+
+            if (freeObstracle.Length == 0)
+                continue;
+
             int randomIndex = Random.Range(0, freeObstracle.Length);
             freeObstracle[randomIndex].On();
         }

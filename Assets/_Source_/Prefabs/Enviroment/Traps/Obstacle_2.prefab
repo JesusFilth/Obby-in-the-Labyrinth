@@ -104,7 +104,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.6557524
+  m_Radius: 1.5
   m_Center: {x: -0.0016540292, y: 0.010445893, z: 0.03089369}
 --- !u!114 &6938989691172556315
 MonoBehaviour:
@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 5750559731190928894}
   - component: {fileID: 1739712811785725595}
   - component: {fileID: 207882990573689661}
+  - component: {fileID: 3054299932405541663}
   m_Layer: 0
   m_Name: Obstacle_2
   m_TagString: Untagged
@@ -224,6 +225,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3054299932405541663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424854074721247950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afadd619fe11dd34c833c5a288044254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levelNeed: 3
 --- !u!1 &4825667800396155510
 GameObject:
   m_ObjectHideFlags: 0

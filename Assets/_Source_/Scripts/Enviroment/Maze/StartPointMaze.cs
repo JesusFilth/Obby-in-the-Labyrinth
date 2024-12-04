@@ -14,7 +14,7 @@ public class StartPointMaze : MonoBehaviour
         if (DIGameConteiner.Instance != null)
         {
             DIGameConteiner.Instance.InjectRecursive(gameObject);
-            _initLevel.AddStartPoint(this);
+            _initLevel.AddPlayerStartPoint(this);
         }
     }
 }

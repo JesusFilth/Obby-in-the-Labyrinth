@@ -89,7 +89,7 @@ public class LevelStorage : MonoBehaviour,
         if (Level == 1)
             return 0;
 
-        return Level + CurrentMaze;
+        return (Level-1) + CurrentMaze;
     }
 
     public void AddStar(int count)
