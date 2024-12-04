@@ -1,4 +1,5 @@
 using Agava.WebUtility;
+using GamePush;
 using UnityEngine;
 
 public class FocusGame : MonoBehaviour
@@ -18,17 +19,17 @@ public class FocusGame : MonoBehaviour
     private void OnEnable()
     {
         Application.focusChanged += OnInBackgroundChangeApp;
-        WebApplication.InBackgroundChangeEvent += OnInBackgroundChangeWeb;
     }
 
     private void OnDisable()
     {
         Application.focusChanged -= OnInBackgroundChangeApp;
-        WebApplication.InBackgroundChangeEvent -= OnInBackgroundChangeWeb;
     }
 
     public void Lock()
     {
+        GP_Game.IsPaused();
+
         MuteAudio(true);
         PauseGame(true);
 
@@ -37,6 +38,8 @@ public class FocusGame : MonoBehaviour
 
     public void Unlock()
     {
+        GP_Game.GameReady();
+
         _isLock = false;
 
         MuteAudio(false);
@@ -63,11 +66,5 @@ public class FocusGame : MonoBehaviour
     {
         MuteAudio(!value);
         PauseGame(!value);
-    }
-
-    private void OnInBackgroundChangeWeb(bool value)
-    {
-        MuteAudio(value);
-        PauseGame(value);
     }
 }

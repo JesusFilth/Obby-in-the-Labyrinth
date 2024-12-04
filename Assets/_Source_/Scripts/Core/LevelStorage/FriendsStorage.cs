@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class FriendsStorage : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class FriendsStorage : MonoBehaviour
         level--;
 
         if(level < 0 || level > _friends.Count - 1)
-            return _friends[0];
+            return _friends[Random.Range(0, _friends.Count)];
 
         return _friends[level];
     }
