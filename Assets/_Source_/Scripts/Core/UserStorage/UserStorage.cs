@@ -8,6 +8,8 @@ public class UserStorage
     private const string GoldKey = "gold";
     private const string LevelKey = "level-model";
 
+    private const int MaxStars = 3;
+
     public void AddLevel(int level, int currentStars)
     {
         string json = GP_Player.GetString(LevelKey);
@@ -78,16 +80,26 @@ public class UserStorage
         return levelModelStorage.Levels.Length;
     }
 
-    public void AddScore(int score)
-    {
-        GP_Player.AddScore(score);
-        Save();
-    }
-
     public void ToDefault()
     {
         CreateDafaultLevels(1,0);
         Save();
+    }
+
+    public bool HasFriend(int level)
+    {
+        string json = GP_Player.GetString(LevelKey);
+
+        if(string.IsNullOrEmpty(json))
+            return false;
+
+        LevelModelStorage levelModelStorage = JsonUtility.FromJson<LevelModelStorage>(json);
+        LevelModel levelFind = levelModelStorage.Levels.Where(lvl => lvl.Number == level).FirstOrDefault();
+
+        if (levelFind == null)
+            return false;
+
+        return levelFind.Stars == MaxStars;
     }
 
     private void CreateDafaultLevels(int level, int stars)
