@@ -54,6 +54,19 @@ namespace SDK
                 _avatarLoading = StartCoroutine(LoadingImage(avatar));
         }
 
+        public void Init(LeaderboardFetchData player, int rank)
+        {
+            _rank.text = rank.ToString();
+            _playerName.text = player.name;
+            _playerScore.text = player.score.ToString();
+
+            if (player.id == GP_Player.GetID())
+                _panel.sprite = _playerPanel;
+
+            if (_avatarLoading == null)
+                _avatarLoading = StartCoroutine(LoadingImage(player.avatar));
+        }
+
         private IEnumerator LoadingImage(string imageUrl)
         {
             using (UnityWebRequest www = UnityWebRequestTexture.GetTexture(imageUrl))

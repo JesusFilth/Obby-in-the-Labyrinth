@@ -35,11 +35,12 @@ namespace SDK
         {
             Clear();
 
+            int playerID = GP_Player.GetID();
             string playerName = GP_Player.GetName();
 
             List<LeaderboardFetchData> players = data.GetList<LeaderboardFetchData>();
 
-            if(players.Where(player=>player.name == playerName).FirstOrDefault() == null)
+            if(players.Where(player => player.id == playerID).FirstOrDefault() == null)
             {
                 players[players.Count-1] = new LeaderboardFetchData()
                 { 
@@ -56,11 +57,7 @@ namespace SDK
                 if (string.IsNullOrEmpty(players[i].name))
                     players[i].name = GetAnonymousName();
 
-                temp.Init(
-                    (i+1).ToString(),
-                    players[i].name,
-                    players[i].score.ToString(),
-                    players[i].avatar);
+                temp.Init(players[i],(i + 1));
 
                 _leaderboadElements.Add(temp);
             }
