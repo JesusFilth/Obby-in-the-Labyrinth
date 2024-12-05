@@ -33,7 +33,10 @@ public class UserStorage
         else
         {
             if (levelFind.Stars < currentStars)
+            {
                 levelFind.Stars = currentStars;
+                UpdateScore(levelModelStorage);
+            }
         }
 
         json = JsonUtility.ToJson(levelModelStorage);
@@ -100,6 +103,12 @@ public class UserStorage
             return false;
 
         return levelFind.Stars == MaxStars;
+    }
+
+    private void UpdateScore(LevelModelStorage levelModelStorage)
+    {
+        int score = levelModelStorage.Levels.Sum(stars => stars.Stars);
+        GP_Player.AddScore(score);
     }
 
     private void CreateDafaultLevels(int level, int stars)

@@ -9,6 +9,7 @@ public class StateMashineUI : MonoBehaviour
     [SerializeField] private GameView _rewardLifeUI;
     [SerializeField] private GameView _gameOverUI;
     [SerializeField] private GameView _collectionUI;
+    [SerializeField] private GameView _raitingUI;
 
     private GameUIState _currentState;
     private Dictionary<Type, GameUIState> _states;
@@ -37,7 +38,8 @@ public class StateMashineUI : MonoBehaviour
             [typeof(GameMenuStateUI)] = new GameMenuStateUI(_menu),
             [typeof(LifeRewardUIState)] = new LifeRewardUIState(_rewardLifeUI),
             [typeof(GameOverUIState)] = new GameOverUIState(_gameOverUI),
-            [typeof(CollectionUIState)] = new CollectionUIState(_collectionUI)
+            [typeof(CollectionUIState)] = new CollectionUIState(_collectionUI),
+            [typeof(RaitingUIState)] = new RaitingUIState(_raitingUI),
         };
 
         EnterIn<GameLevelUIState>();

@@ -8,7 +8,7 @@ namespace GameCreator.Runtime.Common
     {
         // STATIC AND CONST: ----------------------------------------------------------------------
         
-        private const int SORT_ORDER = 9999;
+        private const int SORT_ORDER = 1;
         private static readonly Vector2 RESOLUTION = new Vector2(1920, 1080);
         
         private static readonly Vector2 ANCHOR_LEFT = new Vector2(0f, 0f);
