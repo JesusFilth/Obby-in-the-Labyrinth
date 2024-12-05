@@ -11,10 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Source_/Scene/Game.unity
     guid: 41e24267f2dbe014ca6461cfa2501230
-  - enabled: 1
-    path: Assets/MODELS/PolygonParticleFX/Scenes/Demo.unity
-    guid: ad343a8737470eb4cb90975973b145d2
-  - enabled: 1
-    path: Assets/Plugins/CW/LeanLocalization/Examples/_13_Debug.unity
-    guid: 005cfcdee4f613d45890987499ed0303
   m_configObjects: {}
