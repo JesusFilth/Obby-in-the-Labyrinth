@@ -22,24 +22,24 @@ public class StateMashineUI : MonoBehaviour
     public void EnterIn<TState>()
         where TState : GameUIState
     {
-        if(_states.TryGetValue(typeof(TState), out GameUIState state))
+        if (_states.TryGetValue(typeof(TState), out var state))
         {
             _currentState?.Close();
             _currentState = state;
             _currentState.Open();
         }
     }
-    
+
     private void Initialize()
     {
-        _states = new Dictionary<Type, GameUIState>()
+        _states = new Dictionary<Type, GameUIState>
         {
             [typeof(GameLevelUIState)] = new GameLevelUIState(_gameUI),
             [typeof(GameMenuStateUI)] = new GameMenuStateUI(_menu),
             [typeof(LifeRewardUIState)] = new LifeRewardUIState(_rewardLifeUI),
             [typeof(GameOverUIState)] = new GameOverUIState(_gameOverUI),
             [typeof(CollectionUIState)] = new CollectionUIState(_collectionUI),
-            [typeof(RaitingUIState)] = new RaitingUIState(_raitingUI),
+            [typeof(RaitingUIState)] = new RaitingUIState(_raitingUI)
         };
 
         EnterIn<GameLevelUIState>();

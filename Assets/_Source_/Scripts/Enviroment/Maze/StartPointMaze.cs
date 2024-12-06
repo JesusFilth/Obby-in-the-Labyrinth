@@ -5,9 +5,9 @@ public class StartPointMaze : MonoBehaviour
 {
     [SerializeField] private Transform _point;
 
-    public Transform Point  => _point;
-
     [Inject] private InitializeLevel _initLevel;
+
+    public Transform Point => _point;
 
     private void Awake()
     {

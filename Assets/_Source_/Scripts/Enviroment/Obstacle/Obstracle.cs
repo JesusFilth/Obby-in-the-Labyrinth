@@ -1,12 +1,11 @@
-using Reflex.Attributes;
 using System.Collections;
+using Reflex.Attributes;
 using UnityEngine;
 
 public class Obstracle : MonoBehaviour
 {
+    private bool _isActive;
     [Inject] private ILevelNavigation _levelNavigation;
-
-    private bool _isActive = false;
 
     private void Awake()
     {
@@ -25,7 +24,7 @@ public class Obstracle : MonoBehaviour
         if (_isActive == false)
             return;
 
-        if(other.TryGetComponent(out Player player))
+        if (other.TryGetComponent(out Player player))
         {
             _isActive = false;
             _levelNavigation.RestartLevel();

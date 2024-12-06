@@ -44,7 +44,7 @@ public abstract class EnviromentObjectSpawn : MonoBehaviour
 
     public bool CanSpawn(int level)
     {
-        if(_item.LevelNeed <= level && IsActive == false)
+        if (_item.LevelNeed <= level && IsActive == false)
             return true;
 
         return false;

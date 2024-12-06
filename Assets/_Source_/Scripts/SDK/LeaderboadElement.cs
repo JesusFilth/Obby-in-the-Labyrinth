@@ -1,7 +1,6 @@
-using GamePush;
-using Reflex.Attributes;
 using System;
 using System.Collections;
+using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -59,13 +58,13 @@ namespace SDK
 
         private IEnumerator LoadingImage(string imageUrl)
         {
-            using (UnityWebRequest www = UnityWebRequestTexture.GetTexture(imageUrl))
+            using (var www = UnityWebRequestTexture.GetTexture(imageUrl))
             {
                 yield return www.SendWebRequest();
 
                 if (www.result == UnityWebRequest.Result.Success)
                 {
-                    Texture2D texture = DownloadHandlerTexture.GetContent(www);
+                    var texture = DownloadHandlerTexture.GetContent(www);
                     _icon.texture = texture;
                 }
             }

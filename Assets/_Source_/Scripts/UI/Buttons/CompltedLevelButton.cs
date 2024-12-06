@@ -28,12 +28,8 @@ public class CompltedLevelButton : MonoBehaviour
     private void OnClick()
     {
         if (_levelNavigation.IsLastMazeLevel())
-        {
             _stateMashineUI.EnterIn<GameOverUIState>();
-        }
         else
-        {
             _levelNavigation.NextMaze();
-        }
     }
 }

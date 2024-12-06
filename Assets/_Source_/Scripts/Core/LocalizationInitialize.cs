@@ -19,7 +19,7 @@ namespace Core.Localization
 
         private void ChangeLenguage()
         {
-            Language language = GP_Language.Current();
+            var language = GP_Language.Current();
 
             switch (language)
             {

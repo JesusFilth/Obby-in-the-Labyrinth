@@ -8,9 +8,9 @@ public class LifeRewardUI : GameView
     [SerializeField] private Button _rewardBtn;
     [SerializeField] private Button _continueBtn;
 
-    private bool _isHasLife;
-
     [Inject] private StateMashineUI _gameUI;
+
+    private bool _isHasLife;
 
     private void OnEnable()
     {
@@ -44,7 +44,6 @@ public class LifeRewardUI : GameView
 
     private void ShowReward()
     {
-
     }
 
     private void ToContinue()

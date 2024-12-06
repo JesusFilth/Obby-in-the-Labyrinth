@@ -1,6 +1,4 @@
-﻿using System;
-
-public interface ILevelCurrent
+﻿public interface ILevelCurrent
 {
     void InitGame(int level);
     int GetTrapsCount();

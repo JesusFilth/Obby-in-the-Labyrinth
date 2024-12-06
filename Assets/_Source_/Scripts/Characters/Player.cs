@@ -1,4 +1,3 @@
-using System;
 using GameCreator.Runtime.Characters;
 using Reflex.Attributes;
 using UnityEngine;

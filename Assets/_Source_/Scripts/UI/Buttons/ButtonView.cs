@@ -9,11 +9,20 @@ public abstract class ButtonView : MonoBehaviour
 
     [Inject] protected StateMashineUI StateMashine;
 
-    protected virtual void Awake() => _button = GetComponent<Button>();
+    protected virtual void Awake()
+    {
+        _button = GetComponent<Button>();
+    }
 
-    protected virtual void OnEnable() => _button.onClick.AddListener(OnClick);
+    protected virtual void OnEnable()
+    {
+        _button.onClick.AddListener(OnClick);
+    }
 
-    protected virtual void OnDisable() => _button.onClick.RemoveListener(OnClick);
+    protected virtual void OnDisable()
+    {
+        _button.onClick.RemoveListener(OnClick);
+    }
 
     protected abstract void OnClick();
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AroundPlayerCamera : MonoBehaviour
@@ -12,6 +10,23 @@ public class AroundPlayerCamera : MonoBehaviour
 
     private float _currentAngle;
 
+    private void LateUpdate()
+    {
+        if (_target == null)
+            return;
+
+        _currentAngle += _rotationSpeed * Time.unscaledDeltaTime;
+        var rotation = Quaternion.Euler(0, _currentAngle, 0);
+
+        var positionOffset = new Vector3(0, _height, -_distance);
+        var desiredPosition = _target.position + rotation * positionOffset;
+
+        transform.position = desiredPosition;
+
+        var targetPosition = _target.position + new Vector3(0, _verticalOffsetAngle, 0);
+        transform.LookAt(targetPosition);
+    }
+
     private void OnEnable()
     {
         _currentAngle = transform.eulerAngles.y;
@@ -20,22 +35,5 @@ public class AroundPlayerCamera : MonoBehaviour
     public void SetTarget(Transform target)
     {
         _target = target;
-    }
-
-    private void LateUpdate()
-    {
-        if (_target == null)
-            return;
-
-        _currentAngle += _rotationSpeed * Time.unscaledDeltaTime;
-        Quaternion rotation = Quaternion.Euler(0, _currentAngle, 0);
-
-        Vector3 positionOffset = new Vector3(0, _height, -_distance);
-        Vector3 desiredPosition = _target.position + rotation * positionOffset;
-
-        transform.position = desiredPosition;
-
-        Vector3 targetPosition = _target.position + new Vector3(0, _verticalOffsetAngle, 0);
-        transform.LookAt(targetPosition);
     }
 }

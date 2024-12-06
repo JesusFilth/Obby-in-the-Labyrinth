@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,15 +11,13 @@ public class LevelStorage : MonoBehaviour,
     private const int MaxSizeForNewLevel = 4;
     private const int MinMazeSize = 4;
 
-    private bool _isFirstGame = false;
+    private bool _isFirstGame;
 
-    public event Action<int> StarsChanged;
+    private bool IsTakeStar;
 
     public int CurrentMaze { get; private set; } = 1;
     public int Level { get; private set; } = 1;
-    public int CurrentStars { get; private set; } = 0;
-
-    private bool IsTakeStar = false;
+    public int CurrentStars { get; private set; }
 
     public void InitGame(int level)
     {
@@ -33,17 +30,48 @@ public class LevelStorage : MonoBehaviour,
         Level = level;
     }
 
-    public bool IsLastMazeLevel() => CurrentMaze == MaxSizeForNewLevel - 1;
+    public int GetMazeSizeX()
+    {
+        return GetMazeSize();
+    }
 
-    public int GetMazeSizeX() => GetMazeSize();
+    public int GetMazeSizeY()
+    {
+        return GetMazeSize();
+    }
 
-    public int GetMazeSizeY() => GetMazeSize();
+    public int GetCurrentLevel()
+    {
+        return Level;
+    }
 
-    public int GetCurrentLevel() => Level;
+    public int GetCurrentMaze()
+    {
+        return CurrentMaze;
+    }
 
-    public int GetCurrentMaze() => CurrentMaze;
+    public int GetCurrentStars()
+    {
+        return CurrentStars;
+    }
 
-    public int GetCurrentStars() => CurrentStars;
+    public int GetStarCountInMaze()
+    {
+        return StarInMaze;
+    }
+
+    public int GetTrapsCount()
+    {
+        if (Level == 1)
+            return 0;
+
+        return Level - 1 + CurrentMaze;
+    }
+
+    public bool IsLastMazeLevel()
+    {
+        return CurrentMaze == MaxSizeForNewLevel - 1;
+    }
 
     public void NextMaze()
     {
@@ -57,7 +85,7 @@ public class LevelStorage : MonoBehaviour,
             CurrentStars = 0;
         }
 
-        NextLevel();  
+        NextLevel();
     }
 
     public void NextLevel()
@@ -68,7 +96,7 @@ public class LevelStorage : MonoBehaviour,
     public void RestartLevel()
     {
         if (IsTakeStar)
-            CurrentStars = Mathf.Clamp(0, CurrentStars-1 ,3);
+            CurrentStars = Mathf.Clamp(0, CurrentStars - 1, 3);
 
         SceneManager.LoadScene(GameSceneNames.Game);
     }
@@ -82,15 +110,7 @@ public class LevelStorage : MonoBehaviour,
         SceneManager.LoadScene(GameSceneNames.Game);
     }
 
-    public int GetStarCountInMaze() => StarInMaze;
-
-    public int GetTrapsCount()
-    {
-        if (Level == 1)
-            return 0;
-
-        return (Level-1) + CurrentMaze;
-    }
+    public event Action<int> StarsChanged;
 
     public void AddStar(int count)
     {
@@ -101,10 +121,7 @@ public class LevelStorage : MonoBehaviour,
 
     private bool CheckNewLevel()
     {
-        if((CurrentMaze % MaxSizeForNewLevel) == 0)
-        {
-            return true;
-        }
+        if (CurrentMaze % MaxSizeForNewLevel == 0) return true;
 
         return false;
     }

@@ -13,7 +13,7 @@ public class CubeRotate : MonoBehaviour
     {
         _transform = transform;
 
-        if(_isRandom)
+        if (_isRandom)
             Initialize();
     }
 
@@ -24,10 +24,10 @@ public class CubeRotate : MonoBehaviour
 
     private void Initialize()
     {
-        _speed = Random.Range(1,3);
+        _speed = Random.Range(1, 3);
 
         _direction = new Vector3(
-            Random.Range(-1,1),
+            Random.Range(-1, 1),
             Random.Range(-1, 1),
             Random.Range(-1, 1));
     }

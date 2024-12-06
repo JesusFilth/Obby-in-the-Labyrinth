@@ -8,7 +8,7 @@ namespace SDK
 {
     public class LederboardView : MonoBehaviour
     {
-        private const string AnanimNameRU = "Аноним";
+        private const string AnanimNameRU = "РђРЅРѕРЅРёРј";
         private const string AnanimNameEU = "Anonymous";
         private const string AnanimNameTR = "Anonim";
 
@@ -18,12 +18,18 @@ namespace SDK
         [SerializeField] private LeaderboadElement _prefab;
         [SerializeField] private Transform _conteiner;
 
-        private List<LeaderboadElement> _leaderboadElements = new();
-
-        [Inject] private UserStorage _userStorage;
+        private readonly List<LeaderboadElement> _leaderboadElements = new();
 
         private int _userId;
         private string _userName;
+
+        [Inject] private UserStorage _userStorage;
+
+        private void Awake()
+        {
+            _userId = GP_Player.GetID();
+            _userName = GP_Player.GetName();
+        }
 
         private void OnEnable()
         {
@@ -35,40 +41,35 @@ namespace SDK
             GP_Leaderboard.OnFetchSuccess -= OnFetchSuccess;
         }
 
-        private void Awake()
+        public void Fetch()
         {
-            _userId = GP_Player.GetID();
-            _userName = GP_Player.GetName();
+            GP_Leaderboard.Fetch("", Score, Order.DESC, MaxElements);
         }
-
-        public void Fetch() => GP_Leaderboard.Fetch("", Score, Order.DESC, MaxElements);
 
         private void OnFetchSuccess(string fetchTag, GP_Data data)
         {
             Clear();
 
-            List<LeaderboardFetchData> players = data.GetList<LeaderboardFetchData>();
+            var players = data.GetList<LeaderboardFetchData>();
 
-            if(players.Where(player => player.id == _userId).FirstOrDefault() == null)
-            {
-                players[players.Count-1] = new LeaderboardFetchData()
-                { 
+            if (players.Where(player => player.id == _userId).FirstOrDefault() == null)
+                players[players.Count - 1] = new LeaderboardFetchData
+                {
                     name = _userName,
                     score = (int)GP_Player.GetScore(),
                     avatar = GP_Player.GetAvatarUrl()
                 };
-            }
 
-            for (int i = 0; i < players.Count; i++)
+            for (var i = 0; i < players.Count; i++)
             {
-                LeaderboadElement temp = Instantiate(_prefab, _conteiner);
+                var temp = Instantiate(_prefab, _conteiner);
 
                 if (string.IsNullOrEmpty(players[i].name))
                     players[i].name = GetAnonymousName();
 
                 temp.Init(
                     players[i],
-                    (i + 1),
+                    i + 1,
                     players[i].id == _userId);
 
                 _leaderboadElements.Add(temp);
@@ -77,15 +78,12 @@ namespace SDK
 
         private void Clear()
         {
-            foreach (LeaderboadElement element in _leaderboadElements)
-            {
-                Destroy(element.gameObject);
-            }
+            foreach (var element in _leaderboadElements) Destroy(element.gameObject);
         }
 
         private string GetAnonymousName()
         {
-            Language language = GP_Language.Current();
+            var language = GP_Language.Current();
 
             switch (language)
             {

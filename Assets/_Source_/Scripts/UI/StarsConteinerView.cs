@@ -21,7 +21,7 @@ public class StarsConteinerView : MonoBehaviour
 
     private void OnValidate()
     {
-        if(_stars.Length != MaxStar)
+        if (_stars.Length != MaxStar)
             _stars = new StarView[MaxStar];
     }
 
@@ -29,13 +29,13 @@ public class StarsConteinerView : MonoBehaviour
     {
         ClearStars();
 
-        for (int i = 0; i < star; i++)
+        for (var i = 0; i < star; i++)
             _stars[i].On();
     }
 
     private void ClearStars()
     {
-        foreach (StarView star in _stars)
+        foreach (var star in _stars)
             star.Off();
     }
 }

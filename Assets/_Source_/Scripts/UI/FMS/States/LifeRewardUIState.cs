@@ -3,6 +3,5 @@
     public LifeRewardUIState(GameView view)
         : base(view)
     {
-
     }
 }

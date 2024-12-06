@@ -3,23 +3,23 @@ using System.Collections.Generic;
 
 public class GameStateMashine
 {
-    private Dictionary<Type, IGameState> _states;
     private IGameState _currentState;
+    private readonly Dictionary<Type, IGameState> _states;
 
     public GameStateMashine()
     {
-        _states = new Dictionary<Type, IGameState>()
+        _states = new Dictionary<Type, IGameState>
         {
             [typeof(BootstrapState)] = new BootstrapState(this),
             [typeof(LoadDataState)] = new LoadDataState(this),
-            [typeof(LoadGameSceneState)] = new LoadGameSceneState(),
+            [typeof(LoadGameSceneState)] = new LoadGameSceneState()
         };
     }
 
     public void EnterIn<TState>()
-            where TState : IGameState
+        where TState : IGameState
     {
-        if (_states.TryGetValue(typeof(TState), out IGameState state))
+        if (_states.TryGetValue(typeof(TState), out var state))
         {
             _currentState = state;
             _currentState.Execute();

@@ -1,5 +1,5 @@
-using Reflex.Attributes;
 using System.Collections;
+using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
 
@@ -9,9 +9,9 @@ public class LevelInitUI : GameView
     [SerializeField] private float _delay = 3;
 
     private Coroutine _coroutine;
-    private WaitForSeconds _waitForSeconds;
 
     [Inject] private StateMashineUI _stateMashineUI;
+    private WaitForSeconds _waitForSeconds;
 
     private void OnEnable()
     {
@@ -20,7 +20,7 @@ public class LevelInitUI : GameView
 
     private void OnDisable()
     {
-        if(_coroutine != null)
+        if (_coroutine != null)
         {
             StopCoroutine(_coroutine);
             _coroutine = null;

@@ -33,8 +33,14 @@ namespace Sound
             Stop();
         }
 
-        private void Play() => _audioSource.Play();
+        private void Play()
+        {
+            _audioSource.Play();
+        }
 
-        private void Stop() => _audioSource.Stop();
+        private void Stop()
+        {
+            _audioSource.Stop();
+        }
     }
 }

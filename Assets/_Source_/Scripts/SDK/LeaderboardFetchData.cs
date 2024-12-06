@@ -1,6 +1,8 @@
-﻿namespace SDK
+﻿using System;
+
+namespace SDK
 {
-    [System.Serializable]
+    [Serializable]
     public class LeaderboardFetchData
     {
         public int id;

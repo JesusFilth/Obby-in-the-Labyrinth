@@ -5,7 +5,7 @@ public class Star : MonoBehaviour
 {
     private const int Value = 1;
 
-    private bool _isActive = false;
+    private bool _isActive;
 
     private IEnumerator Start()
     {
@@ -18,7 +18,7 @@ public class Star : MonoBehaviour
         if (_isActive == false)
             return;
 
-        if(other.TryGetComponent(out Player player))
+        if (other.TryGetComponent(out Player player))
         {
             _isActive = false;
             player.AddStar(Value);

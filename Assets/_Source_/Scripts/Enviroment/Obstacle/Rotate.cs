@@ -13,13 +13,13 @@ public class Rotate : MonoBehaviour
 
     private void Update()
     {
-        float rotationAmount = _speed * Time.deltaTime;
+        var rotationAmount = _speed * Time.deltaTime;
 
         _transform.Rotate(rotationAmount, 0, 0);
 
         if (_transform.rotation.eulerAngles.x >= 360f)
         {
-            Vector3 eulerRotation = _transform.rotation.eulerAngles;
+            var eulerRotation = _transform.rotation.eulerAngles;
             eulerRotation.x -= 360f;
             _transform.rotation = Quaternion.Euler(eulerRotation);
         }

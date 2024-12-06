@@ -59,7 +59,7 @@ public class GameMenuView : GameView
         _level.text = _currentChoseLevel.ToString();
 
         _starsConteiner.UpdateData(_userStorage.GetLevelStars(_currentChoseLevel));
-        
+
         ButtonsUpdate();
     }
 
@@ -70,9 +70,9 @@ public class GameMenuView : GameView
         else
             _next.gameObject.SetActive(true);
 
-        if(_currentChoseLevel == FirstLevelNumber)
+        if (_currentChoseLevel == FirstLevelNumber)
             _prev.gameObject.SetActive(false);
-        else 
+        else
             _prev.gameObject.SetActive(true);
     }
 

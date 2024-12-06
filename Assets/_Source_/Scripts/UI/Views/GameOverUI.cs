@@ -13,9 +13,9 @@ public class GameOverUI : GameView
     [SerializeField] private Button _replayLevel;
 
     [SerializeField] private StarsConteinerView _starsConteiner;
+    [Inject] private ILevelCurrent _levelCurrent;
 
     [Inject] private ILevelNavigation _levelNavigation;
-    [Inject] private ILevelCurrent _levelCurrent;
     [Inject] private UserStorage _userStorage;
 
     private void OnEnable()
@@ -46,8 +46,8 @@ public class GameOverUI : GameView
 
     private void UpdateData()
     {
-        int currentLevel = _levelCurrent.GetCurrentLevel();
-        int stars = _levelCurrent.GetCurrentStars();
+        var currentLevel = _levelCurrent.GetCurrentLevel();
+        var stars = _levelCurrent.GetCurrentStars();
 
         _levelNumber.text = currentLevel.ToString();
 

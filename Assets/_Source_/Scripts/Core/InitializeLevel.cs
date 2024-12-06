@@ -1,22 +1,22 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using qtools.qmaze;
 using Reflex.Attributes;
 using UnityEngine;
-using qtools.qmaze;
-using System.Collections;
 using Random = UnityEngine.Random;
 
 public class InitializeLevel : MonoBehaviour
 {
     [SerializeField] private QMazeEngine _mazeEngine;
-
-    private List<StartPointMaze> _startPoints = new();
+    [Inject] private ILevelCurrent _levelCurrent;
     private List<EnviromentObjectSpawn> _obstracleSpawn = new();
-    private List<EnviromentObjectSpawn> _starsSpawn = new();
 
     [Inject] private Player _player;
-    [Inject] private ILevelCurrent _levelCurrent;
+    private List<EnviromentObjectSpawn> _starsSpawn = new();
+
+    private List<StartPointMaze> _startPoints = new();
     [Inject] private UserStorage _userStorage;
 
     private void Awake()
@@ -63,7 +63,7 @@ public class InitializeLevel : MonoBehaviour
         if (_startPoints.Count == 0)
             throw new ArgumentNullException(nameof(_startPoints));
 
-        int randomIndex = Random.Range(0, _startPoints.Count);
+        var randomIndex = Random.Range(0, _startPoints.Count);
         _player.SetPosition(_startPoints[randomIndex].Point);
     }
 
@@ -78,14 +78,14 @@ public class InitializeLevel : MonoBehaviour
         if (_obstracleSpawn.Count == 0)
             throw new ArgumentNullException(nameof(_obstracleSpawn));
 
-        for (int i = 0; i < _levelCurrent.GetTrapsCount(); i++)
+        for (var i = 0; i < _levelCurrent.GetTrapsCount(); i++)
         {
-            EnviromentObjectSpawn[] freeObstracle = _obstracleSpawn.Where(obst => obst.CanSpawn(_levelCurrent.GetCurrentLevel())).ToArray();
+            var freeObstracle = _obstracleSpawn.Where(obst => obst.CanSpawn(_levelCurrent.GetCurrentLevel())).ToArray();
 
             if (freeObstracle.Length == 0)
                 continue;
 
-            int randomIndex = Random.Range(0, freeObstracle.Length);
+            var randomIndex = Random.Range(0, freeObstracle.Length);
             freeObstracle[randomIndex].On();
         }
     }
@@ -95,10 +95,10 @@ public class InitializeLevel : MonoBehaviour
         if (_starsSpawn.Count == 0)
             throw new ArgumentNullException(nameof(_starsSpawn));
 
-        for (int i = 0; i < _levelCurrent.GetStarCountInMaze(); i++)
+        for (var i = 0; i < _levelCurrent.GetStarCountInMaze(); i++)
         {
-            EnviromentObjectSpawn[] freeStars = _starsSpawn.Where(obst => obst.IsActive == false).ToArray();
-            int randomIndex = Random.Range(0, freeStars.Length);
+            var freeStars = _starsSpawn.Where(obst => obst.IsActive == false).ToArray();
+            var randomIndex = Random.Range(0, freeStars.Length);
             freeStars[randomIndex].On();
         }
     }

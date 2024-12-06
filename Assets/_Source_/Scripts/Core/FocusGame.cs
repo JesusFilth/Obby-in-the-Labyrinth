@@ -1,4 +1,3 @@
-using Agava.WebUtility;
 using GamePush;
 using UnityEngine;
 
@@ -10,10 +9,7 @@ public class FocusGame : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
+        if (Instance == null) Instance = this;
     }
 
     private void OnEnable()
