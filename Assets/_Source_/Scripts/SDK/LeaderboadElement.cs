@@ -1,4 +1,5 @@
 using GamePush;
+using Reflex.Attributes;
 using System;
 using System.Collections;
 using TMPro;
@@ -18,6 +19,8 @@ namespace SDK
         [SerializeField] private Sprite _playerPanel;
 
         private Coroutine _avatarLoading;
+
+        [Inject] private UserStorage _userStorage;
 
         private void OnEnable()
         {
@@ -41,26 +44,13 @@ namespace SDK
             }
         }
 
-        public void Init(string rank, string name, string score, string avatar)
-        {
-            _rank.text = rank;
-            _playerName.text = name;
-            _playerScore.text = score;
-
-            if (name == GP_Player.GetName())
-                _panel.sprite = _playerPanel;
-
-            if (_avatarLoading == null)
-                _avatarLoading = StartCoroutine(LoadingImage(avatar));
-        }
-
-        public void Init(LeaderboardFetchData player, int rank)
+        public void Init(LeaderboardFetchData player, int rank, bool isUser)
         {
             _rank.text = rank.ToString();
             _playerName.text = player.name;
             _playerScore.text = player.score.ToString();
 
-            if (player.id == GP_Player.GetID())
+            if (isUser)
                 _panel.sprite = _playerPanel;
 
             if (_avatarLoading == null)

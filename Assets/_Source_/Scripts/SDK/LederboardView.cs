@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using GamePush;
+using Reflex.Attributes;
 using UnityEngine;
 
 namespace SDK
@@ -19,6 +20,11 @@ namespace SDK
 
         private List<LeaderboadElement> _leaderboadElements = new();
 
+        [Inject] private UserStorage _userStorage;
+
+        private int _userId;
+        private string _userName;
+
         private void OnEnable()
         {
             GP_Leaderboard.OnFetchSuccess += OnFetchSuccess;
@@ -29,22 +35,25 @@ namespace SDK
             GP_Leaderboard.OnFetchSuccess -= OnFetchSuccess;
         }
 
+        private void Awake()
+        {
+            _userId = GP_Player.GetID();
+            _userName = GP_Player.GetName();
+        }
+
         public void Fetch() => GP_Leaderboard.Fetch("", Score, Order.DESC, MaxElements);
 
         private void OnFetchSuccess(string fetchTag, GP_Data data)
         {
             Clear();
 
-            int playerID = GP_Player.GetID();
-            string playerName = GP_Player.GetName();
-
             List<LeaderboardFetchData> players = data.GetList<LeaderboardFetchData>();
 
-            if(players.Where(player => player.id == playerID).FirstOrDefault() == null)
+            if(players.Where(player => player.id == _userId).FirstOrDefault() == null)
             {
                 players[players.Count-1] = new LeaderboardFetchData()
                 { 
-                    name = playerName,
+                    name = _userName,
                     score = (int)GP_Player.GetScore(),
                     avatar = GP_Player.GetAvatarUrl()
                 };
@@ -57,7 +66,10 @@ namespace SDK
                 if (string.IsNullOrEmpty(players[i].name))
                     players[i].name = GetAnonymousName();
 
-                temp.Init(players[i],(i + 1));
+                temp.Init(
+                    players[i],
+                    (i + 1),
+                    players[i].id == _userId);
 
                 _leaderboadElements.Add(temp);
             }
@@ -87,7 +99,7 @@ namespace SDK
                     return AnanimNameTR;
             }
 
-            return null;
+            return AnanimNameEU;
         }
     }
 }
